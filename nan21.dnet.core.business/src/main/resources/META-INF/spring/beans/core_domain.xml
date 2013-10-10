@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans
+				http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context 
+				http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="TempAsgnService" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.business.impl.service.TempAsgnService"/>				
+
+	<bean id="TempAsgnLineService" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.business.impl.service.TempAsgnLineService"/>				
+
+	<bean id="AbstractEntityService" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.business.impl.service.AbstractEntityService"/>				
+
+	<bean id="AbstractBaseNTService" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.business.impl.service.AbstractBaseNTService"/>				
+
+	<bean id="AbstractAuditableNTService" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.business.impl.service.AbstractAuditableNTService"/>				
+
+	<bean id="AbstractTypeNTService" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.business.impl.service.AbstractTypeNTService"/>				
+
+	<bean id="AbstractTypeWithCodeNTService" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.business.impl.service.AbstractTypeWithCodeNTService"/>				
+
+	<bean id="AbstractBaseService" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.business.impl.service.AbstractBaseService"/>				
+
+	<bean id="AbstractAuditableService" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.business.impl.service.AbstractAuditableService"/>				
+
+	<bean id="AbstractTypeService" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.business.impl.service.AbstractTypeService"/>				
+
+	<bean id="AbstractTypeWithCodeService" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.business.impl.service.AbstractTypeWithCodeService"/>				
+</beans>

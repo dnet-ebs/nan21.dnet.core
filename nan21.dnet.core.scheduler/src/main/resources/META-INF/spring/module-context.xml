@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:osgi-compendium="http://www.springframework.org/schema/osgi-compendium"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans
+				http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context 
+				http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/osgi-compendium
+    			http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd">
+	<context:property-placeholder
+		properties-ref="net.nan21.dnet.properties" />
+
+	<!-- Default properties -->
+	<osgi-compendium:cm-properties id="net.nan21.dnet.properties"
+		persistent-id="net.nan21.dnet">
+		<prop key="quartz.autoStart">false</prop>
+		<prop key="quartz.autoStartDelay">0</prop>
+		<prop key="quartz.startOnDemand">true</prop>
+	</osgi-compendium:cm-properties>
+
+
+	<context:annotation-config />
+	<bean id="serviceLocator" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.scheduler.ServiceLocator">
+		<property name="jobFactories" ref="osgiJobFactories"></property>
+	</bean>
+	<bean id="jobFactory" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.scheduler.MyJobFactory">
+		<property name="serviceLocator" ref="serviceLocator"></property>
+	</bean>
+	<bean id="jobScheduler" scope="singleton" lazy-init="true"
+		init-method="init" class="net.nan21.dnet.core.scheduler.JobScheduler">
+		<property name="autoStart" value="${quartz.autoStart}" />
+		<property name="autoStartDelay" value="${quartz.autoStartDelay}" />
+		<property name="startOnDemand" value="${quartz.startOnDemand}" />
+		<property name="serviceLocator" ref="serviceLocator" />
+		<property name="jobFactory" ref="jobFactory" />
+		<property name="dataSource" ref="osgiDataSource" />
+		<property name="quartzProperties">
+			<map>
+				<entry key="org.quartz.jobStore.class" value="org.quartz.impl.jdbcjobstore.JobStoreTX" />
+				<entry key="org.quartz.jobStore.driverDelegateClass" value="org.quartz.impl.jdbcjobstore.StdJDBCDelegate" />
+				<entry key="org.quartz.jobStore.dataSource" value="default" />
+				<entry key="org.quartz.threadPool.class" value="org.quartz.simpl.SimpleThreadPool" />
+				<entry
+					key="org.quartz.scheduler.threadsInheritContextClassLoaderOfInitializer"
+					value="true" />
+				<entry key="org.quartz.scheduler.classLoadHelper.class"
+					value="net.nan21.dnet.core.scheduler.MyCascadingClassLoadHelper" />
+				<entry key="org.quartz.threadPool.threadCount" value="2" />
+				<entry key="org.quartz.threadPool.threadPriority" value="5" />
+				<entry key="org.quartz.jobStore.tablePrefix" value="QRTZ_" />
+			</map>
+		</property>
+	</bean>
+</beans>

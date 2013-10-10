@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:osgi="http://www.springframework.org/schema/osgi"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/osgi
+		http://www.springframework.org/schema/osgi/spring-osgi.xsd">
+
+	<bean name="securityAccessDeniedHandler"
+		class="net.nan21.dnet.core.web.security.DefaultAccessDeniedHandler" />
+
+	<bean name="securityAuthenticationEntryPoint"
+		class="net.nan21.dnet.core.web.security.DefaultNotAuthenticatedEntryPoint" />
+
+	<security:http security="none" pattern="/security/*">
+	</security:http>
+
+	<security:http auto-config="true"
+		entry-point-ref="securityAuthenticationEntryPoint">
+
+		<security:session-management
+			session-fixation-protection="migrateSession">
+		</security:session-management>
+
+		<security:access-denied-handler ref="securityAccessDeniedHandler" />
+
+		<security:intercept-url pattern="/tx/**"
+			access="ROLE_DNET_USER" />
+
+		<security:intercept-url pattern="/upload/**"
+			access="ROLE_DNET_USER" />
+	</security:http>
+
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider
+			user-service-ref="osgiSecurityAuthenticationSystemUserService" />
+		<security:authentication-provider
+			user-service-ref="osgiSecurityAuthenticationClientUserService" />
+	</security:authentication-manager>
+
+	<osgi:reference id="osgiSecurityAuthenticationSystemUserService"
+		cardinality="0..1"
+		interface="net.nan21.dnet.core.api.security.IAuthenticationSystemUserService" />
+
+	<osgi:reference id="osgiSecurityAuthenticationClientUserService" timeout="3000"
+		cardinality="0..1"
+		interface="net.nan21.dnet.core.api.security.IAuthenticationClientUserService" />
+
+	<osgi:reference id="osgiSecurityChangePasswordService"
+		cardinality="0..1" interface="net.nan21.dnet.core.api.security.IChangePasswordService" />
+
+	<osgi:reference id="osgiAuthorizationFactory"
+		cardinality="0..1" interface="net.nan21.dnet.core.api.security.IAuthorizationFactory" />
+</beans>

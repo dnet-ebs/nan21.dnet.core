@@ -1,0 +1,3 @@
+		Ext.BLANK_IMAGE_URL = "${urlUiExtjsCore}/s.gif";
+		Ext.QuickTips.init();
+ 		 

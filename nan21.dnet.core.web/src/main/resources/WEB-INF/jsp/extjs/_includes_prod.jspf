@@ -1,0 +1,17 @@
+
+<!-- Extjs  -->
+
+<script type="text/javascript" src="${urlUiExtjsCore}/js/ext-all.js"></script>
+
+<!-- Extjs locale -->
+
+<script type="text/javascript"
+	src="${urlUiExtjsCoreI18n}/${shortLanguage}/extjs.js"></script>
+		
+<!-- Dnet  -->
+
+<script type="text/javascript"
+	src="${urlUiExtjsCoreI18n}/${shortLanguage}/Dnet.js"></script>
+
+<script type="text/javascript"
+	src="${urlUiExtjsCore}/js/dnet-ui-extjs-core-all.js"></script>

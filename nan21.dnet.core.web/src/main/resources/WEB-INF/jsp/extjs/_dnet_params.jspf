@@ -1,0 +1,33 @@
+<%@page import="net.nan21.dnet.core.api.Constants"%>
+<script>
+	/* product info */
+	Dnet.productInfo.name = '${productName}';
+	Dnet.productInfo.version = '${productVersion}';
+	Dnet.logo = '${logo}';
+
+	/* application urls */
+	Dnet.urlHost = "${hostUrl}";
+	Dnet.urlWeb = Dnet.urlHost + "<%=Constants.URL_DNET_WEB%>";	
+	Dnet.urlDs = Dnet.urlHost + "<%=Constants.URL_DNET_DATA_DS%>";
+	Dnet.urlAsgn = Dnet.urlHost +"<%=Constants.URL_DNET_DATA_ASGN%>";
+	Dnet.urlWorkflow = Dnet.urlHost + "<%=Constants.URL_DNET_WORKFLOW%>";
+	Dnet.urlUiExtjs = Dnet.urlHost + "<%=Constants.URL_DNET_UI_EXTJS%>";
+	Dnet.urlSession = Dnet.urlHost + "<%=Constants.URL_DNET_SESSION%>";
+	Dnet.urlUpload = Dnet.urlHost + "<%=Constants.URL_DNET_UPLOAD%>";
+	
+	/* ui-extjs paths */
+	Dnet.urlStaticCore = "${urlUiExtjsCore}";
+	Dnet.urlStaticCoreI18n = "${urlUiExtjsCoreI18n}";
+	Dnet.urlStaticModules = "${urlUiExtjsModules}";	
+	Dnet.urlStaticModulesI18n = "${urlUiExtjsModulesI18n}";
+	Dnet.urlStaticModulesSubpath = "${urlUiExtjsModuleSubpath}";
+	
+	/* date format masks */
+	<c:forEach items="${dateFormatMasks}" var="mask" >
+	Dnet.${mask.key} = "${mask.value}";</c:forEach>
+	Dnet.MODEL_DATE_FORMAT = "${modelDateFormat}";
+
+	/* number format */
+	Dnet.DECIMAL_SEP = "${decimalSeparator}";
+	Dnet.THOUSAND_SEP = "${thousandSeparator}";
+</script>

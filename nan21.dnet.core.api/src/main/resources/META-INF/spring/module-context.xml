@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:osgi-compendium="http://www.springframework.org/schema/osgi-compendium"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/osgi-compendium
+		http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd">
+
+	<!-- Properties -->
+	<context:property-placeholder properties-ref="dnet-properties" />
+	<osgi-compendium:cm-properties id="dnet-properties"
+		persistent-id="net.nan21.dnet" />
+
+	<bean id="settings" class="net.nan21.dnet.core.api.Settings"
+		scope="singleton">
+		
+		<constructor-arg>
+			<props>
+
+				<!-- system -->
+
+				<prop key="workspace">${sys.workspace}</prop>				
+				<prop key="workingMode">${sys.workingMode}</prop>
+				<prop key="loginPage">${sys.loginPage}</prop>
+				<prop key="loginPageCss">${sys.loginPageCss}</prop>
+				<prop key="loginPageLogo">${sys.loginPageLogo}</prop>
+				<prop key="disableFetchGroups">${sys.disableFetchGroups}</prop>
+
+				<prop key="serverDateFormat">${sys.serverDateFormat}</prop>
+				<prop key="serverTimeFormat">${sys.serverTimeFormat}</prop>
+				<prop key="serverDateTimeFormat">${sys.serverDateTimeFormat}</prop>
+				<prop key="serverAltFormats">${sys.serverAltFormats}</prop>
+				<prop key="extjsModelDateFormat">${sys.extjsModelDateFormat}</prop>
+
+				<!-- user defaults -->
+
+				<prop key="extjsDateFormat">${user.extjsDateFormat}</prop>
+				<prop key="extjsTimeFormat">${user.extjsTimeFormat}</prop>
+				<prop key="extjsDateTimeFormat">${user.extjsDateTimeFormat}</prop>
+				<prop key="extjsDateTimeSecFormat">${user.extjsDateTimeSecFormat}</prop>
+				<prop key="extjsMonthFormat">${user.extjsMonthFormat}</prop>
+				<prop key="extjsAltFormats">${user.extjsAltFormats}</prop>
+
+				<prop key="javaDateFormat">${user.javaDateFormat}</prop>
+				<prop key="javaTimeFormat">${user.javaTimeFormat}</prop>				
+				<prop key="javaDateTimeFormat">${user.javaDateTimeFormat}</prop>
+				<prop key="javaDateTimeSecFormat">${user.javaDateTimeSecFormat}</prop>
+				<prop key="javaMonthFormat">${user.javaMonthFormat}</prop>
+				<prop key="javaAltFormats">${user.javaAltFormats}</prop>
+
+				<prop key="language">${user.language}</prop>
+				<prop key="numberFormat">${user.numberFormat}</prop>
+
+			</props>
+		</constructor-arg>
+
+		<property name="productName" value="DNet eBusiness Suite" />
+		<property name="productVersion" value="2.0.0" />		 
+	</bean>
+
+	<bean name="sysparams" class="net.nan21.dnet.core.api.SysParams_Core">
+		<property name="defaultValues">
+			<props>
+				<prop key="CORE_LOGO_URL_EXTJS">${sysparam.CORE_LOGO_URL_EXTJS}</prop>
+				<prop key="CORE_LOGO_URL_REPORT">${sysparam.CORE_LOGO_URL_REPORT}</prop>
+				<prop key="CORE_SESSION_CHECK_IP">${sysparam.CORE_SESSION_CHECK_IP}</prop>
+				<prop key="CORE_SESSION_CHECK_USER_AGENT">${sysparam.CORE_SESSION_CHECK_USER_AGENT}</prop>
+				<prop key="CORE_EXP_HTML_CSS">${sysparam.CORE_EXP_HTML_CSS}</prop>
+				<prop key="CORE_PRINT_HTML_TPL">${sysparam.CORE_PRINT_HTML_TPL}</prop>
+				<prop key="CORE_DEFAULT_LANGUAGE">${sysparam.CORE_DEFAULT_LANGUAGE}</prop>
+				<prop key="CORE_DEFAULT_THEME_EXTJS">${sysparam.CORE_DEFAULT_THEME_EXTJS}</prop>
+				<prop key="CORE_JOB_USER">${sysparam.CORE_JOB_USER}</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

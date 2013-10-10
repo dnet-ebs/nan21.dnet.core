@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:osgi-compendium="http://www.springframework.org/schema/osgi-compendium"
+	xmlns:osgi="http://www.springframework.org/schema/osgi"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/osgi-compendium
+		http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd
+		http://www.springframework.org/schema/osgi
+		http://www.springframework.org/schema/osgi/spring-osgi.xsd">
+
+	<context:annotation-config />
+
+	<!-- Properties -->
+	<context:property-placeholder properties-ref="dnet-properties" />
+	<osgi-compendium:cm-properties id="dnet-properties"
+		persistent-id="net.nan21.dnet" />
+
+	<bean id="serviceLocator" 
+		class="net.nan21.dnet.core.presenter.service.ServiceLocator"/>
+
+	<osgi:reference id="osgiSettings" cardinality="0..1"
+		interface="net.nan21.dnet.core.api.ISettings" />
+
+	<osgi:reference id="osgiDataSource" cardinality="0..1"
+		interface="javax.sql.DataSource"/>
+
+	<osgi:list id="osgiDsDefinitions" cardinality="0..N"
+		interface="net.nan21.dnet.core.api.descriptor.IDsDefinitions"/>
+
+	<osgi:list id="osgiDsServiceFactories" cardinality="0..N"
+		interface="net.nan21.dnet.core.api.service.presenter.IDsServiceFactory"/>
+
+	<osgi:list id="osgiAsgnServiceFactories" cardinality="0..N"
+		interface="net.nan21.dnet.core.api.service.presenter.IAsgnServiceFactory" />
+
+	<osgi:list id="osgiFileUploadServiceFactories" cardinality="0..N"
+		interface="net.nan21.dnet.core.api.service.presenter.IFileUploadServiceFactory"/>
+
+	<osgi:list id="osgiExtensionProviders" cardinality="0..N"
+		interface="net.nan21.dnet.core.api.extensions.IExtensionProvider" />
+
+	<osgi:list id="osgiExtensionContentProviders" cardinality="0..N"
+		interface="net.nan21.dnet.core.api.extensions.IExtensionContentProvider" />
+
+	<bean id="application_uiExtjsSettings" class="net.nan21.dnet.core.web.settings.UiExtjsSettings"
+		scope="singleton">		
+		<property name="urlCore" value="${url.ui.extjs.core}" />
+		<property name="urlCoreI18n" value="${url.ui.extjs.core.i18n}" />
+		<property name="urlModules" value="${url.ui.extjs.modules}" />		
+		<property name="urlModulesI18n" value="${url.ui.extjs.modules.i18n}" />
+		<property name="urlThemes" value="${url.ui.extjs.themes}" />
+		<property name="moduleSupath" value="${url.ui.extjs.module.subpath}" />
+		<property name="cacheFolder" value="${cache.ui.extjs}" />
+	</bean>
+
+	<bean id="dsCsvImport"  scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.presenter.service.ds.DsImportUploadedCsv"/>
+
+	<bean id="fileUploadServiceFactory"
+		class="net.nan21.dnet.core.presenter.service.FileUploadServiceFactory"/>
+  	 
+	<osgi:service ref="fileUploadServiceFactory" ranking="0"
+		interface="net.nan21.dnet.core.api.service.IFileUploadServiceFactory"/>
+
+	<osgi:list id="osgiFileUploadServiceFactories" cardinality="0..N"
+		interface="net.nan21.dnet.core.api.service.IFileUploadServiceFactory" />
+
+	<osgi:reference id="osgiImportDataPackageService"
+		cardinality="0..1" interface="net.nan21.dnet.core.api.service.business.IImportDataPackageService" />
+
+	<!--  
+	<osgi:list id="osgiSetupParticipants" cardinality="0..N"
+		interface="net.nan21.dnet.core.api.setup.ISetupParticipant" />
+
+	<osgi:list id="osgiStartupParticipants" cardinality="0..N"
+		interface="net.nan21.dnet.core.api.setup.IStartupParticipant" />
+ 
+	<osgi:reference id="osgiActivitiProcessEngineHolder"
+		cardinality="0..1" interface="net.nan21.dnet.core.api.wf.IActivitiProcessEngineHolder" />
+	-->
+	<import resource="security.xml" />
+</beans>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="workflowProcessDefinitionController" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.web.controller.workflow.WorkflowProcessDefinitionController">
+	</bean>
+
+	<bean id="workflowProcessInstanceController" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.web.controller.workflow.WorkflowProcessInstanceController">
+	</bean>
+
+	<bean id="workflowTaskController" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.web.controller.workflow.WorkflowTaskController">
+	</bean>
+
+	<bean id="workflowDeploymentController" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.web.controller.workflow.WorkflowDeploymentController">
+	</bean>
+</beans>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:osgi-compendium="http://www.springframework.org/schema/osgi-compendium"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/osgi-compendium
+		http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd">
+
+	<context:annotation-config />
+
+	<!-- Properties -->
+	<context:property-placeholder properties-ref="dnet-properties" />
+	<osgi-compendium:cm-properties id="dnet-properties"
+		persistent-id="net.nan21.dnet" />
+
+	<!-- AUTHENTICATION -->
+	<bean id="adminUsersRepository" class="net.nan21.dnet.core.security.SystemAdministratorUsers">
+		<property name="users">
+			<list>
+				<bean class="net.nan21.dnet.core.security.SystemAdministratorUser">
+					<constructor-arg value="${sys.user.code}" />
+					<constructor-arg value="${sys.user.name}" />
+					<constructor-arg value="${sys.user.loginName}" />					
+					<constructor-arg value="${sys.user.password}" />
+					<property name="roles">
+						<list>
+							<value>ROLE_DNET_USER</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean name="authenticationSystemUserService" class="net.nan21.dnet.core.security.DefaultAuthenticationSystemUserService">
+		<property name="repository" ref="adminUsersRepository" />
+		<property name="settings" ref="osgiSettings" />
+	</bean>
+	
+	<!-- Un-comment these when a bare framework runtime is deployed. 
+		Otherwise these services are provided by dnet.module.ad.security bundle. 
+
+	<bean name="authenticationClientUserService" class="net.nan21.dnet.core.security.DefaultAuthenticationClientUserService"/>
+
+	<bean name="authorizationFactory" class="net.nan21.dnet.core.security.DummyAuthorizationFactory" />
+	<bean class="net.nan21.dnet.core.security.DummyAuthorizationForAsgn" lazy-init="true"/>
+	<bean class="net.nan21.dnet.core.security.DummyAuthorizationForDs" lazy-init="true"/>
+	<bean class="net.nan21.dnet.core.security.DummyAuthorizationForJob" lazy-init="true"/>
+	-->
+</beans>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="defaultDsController" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.web.controller.data.DefaultDsController">
+	</bean>
+
+	<bean name="defaultAsgnController" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.web.controller.data.DefaultAsgnController">
+	</bean>
+
+	<bean name="importController" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.web.controller.data.ImportDataPackageController">
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+</beans>

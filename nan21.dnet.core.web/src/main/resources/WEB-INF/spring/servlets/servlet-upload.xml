@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="multipartResolver" scope="singleton" lazy-init="true"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+	<bean id="fileUploadController" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.web.controller.upload.FileUploadController">
+	</bean>
+</beans>

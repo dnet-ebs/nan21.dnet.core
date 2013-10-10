@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>net.nan21.dnet</groupId>
+		<artifactId>nan21.dnet.core</artifactId>
+		<version>2.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>nan21.dnet.core.ui.extjs</artifactId>
+	<name>DNet Core - Ui Extjs</name>
+	<description>Extjs based user interface framework.</description>
+	<packaging>jar</packaging>
+	
+	<!-- ===================== Dependencies ===================== -->
+	
+	<dependencies>
+	
+		<!-- DNet dependencies -->
+		
+	
+		<!-- External libraries -->
+		
+		<dependency>
+			<groupId>com.yahoo.platform.yui</groupId>
+			<artifactId>yuicompressor</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	
+	<!-- ===================== Build ===================== -->
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<!-- Compress and minify -->				
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<configuration>
+							<target>
+								<echo>Compress and minimize resources...</echo>
+								<property name="compile_classpath" refid="maven.compile.classpath"/>                                                                 
+								<property name="yui.path" value="${yui.path}"/>
+								<ant antfile="${basedir}/pack.xml">
+									<target name="run"/>
+								</ant>
+							</target>                            
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
