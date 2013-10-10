@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DNet Core - Config
+Bundle-SymbolicName: nan21.dnet.core.config
+Bundle-Vendor: Nan21
+Bundle-Version: 2.0.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
