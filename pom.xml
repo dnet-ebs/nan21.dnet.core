@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<relativePath>../nan21.dnet</relativePath>
+		<groupId>net.nan21.dnet</groupId>
+		<artifactId>nan21.dnet</artifactId>
+		<version>2.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>nan21.dnet.core</artifactId>
+	<name>DNet Core</name>
+	<description>DNet Core framework.</description>
+	<packaging>pom</packaging>
+	
+	<scm>
+		<url>https://github.com/dnet-ebs/nan21.dnet.core</url>
+		<connection>scm:git:https://github.com/dnet-ebs/nan21.dnet.core.git</connection>
+		<developerConnection>scm:git:https://github.com/dnet-ebs/nan21.dnet.core.git</developerConnection>
+	</scm>
+	
+	<!-- ========================== Modules ========================== -->
+	
+	<modules>
+		<module>nan21.dnet.core.api</module>
+		<module>nan21.dnet.core.db</module>
+		<module>nan21.dnet.core.config</module>
+		<module>nan21.dnet.core.jdbc</module>
+		<module>nan21.dnet.core.scheduler</module>
+		<module>nan21.dnet.core.report.birt</module>
+		<module>nan21.dnet.core.domain</module>
+		<module>nan21.dnet.core.business</module>
+		<module>nan21.dnet.core.workflow</module>
+		<module>nan21.dnet.core.presenter</module>
+		<module>nan21.dnet.core.home</module>
+		<module>nan21.dnet.core.ui.extjs.themes</module>
+		<module>nan21.dnet.core.ui.extjs</module>
+		<module>nan21.dnet.core.web</module>
+		<module>nan21.dnet.core.security</module>
+		<module>nan21.dnet.core.email</module>
+		<module>nan21.dnet.core.fragment.activiti</module>
+	</modules>
+</project>
