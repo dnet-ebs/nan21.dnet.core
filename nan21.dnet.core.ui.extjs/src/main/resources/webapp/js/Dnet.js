@@ -65,7 +65,8 @@ Dnet = {
 		VIEW_STATE : "ViewStateRt_Ds",
 		MENU : "MenuRtLov_Ds",
 		MENU_ITEM : "MenuItemRtLov_Ds",
-		COMPANY : "OrgLov_Ds"
+		COMPANY_LOV : "OrgLov_Ds",
+		DS_LOV: "DataSourceLov_Ds"
 	},
 
 	msgType : {

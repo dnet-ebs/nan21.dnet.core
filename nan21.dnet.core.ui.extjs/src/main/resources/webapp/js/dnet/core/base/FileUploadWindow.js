@@ -52,7 +52,7 @@ Ext.define("dnet.core.base.FileUploadWindow2", {
 				buttonAlign : "center",
 				fieldDefaults : {
 					labelAlign : "right",
-					labelWidth : 120
+					labelWidth : 140
 				},
 				items : this._buildFieldsConfig_()
 			} ],
@@ -132,22 +132,19 @@ Ext.define("dnet.core.base.FileUploadWindow2", {
 							}
 							switch (action.failureType) {
 							case Ext.form.Action.CLIENT_INVALID:
-								Ext.Msg.alert("", Dnet.translate("msg",
-										"invalid_form"));
+								Dnet.error("INVALID_FORM");
 								break;
 							case Ext.form.Action.CONNECT_FAILURE:
-								Ext.Msg.alert('Failure',
-										action.response.responseText);
+								Dnet.error(action.response.responseText);
 								break;
 							case Ext.form.Action.SERVER_INVALID:
-								Ext.Msg.alert('Failure',
-										action.response.responseText);
+								Dnet.error(action.response.responseText);
 							}
-							this.close();
+							// this.close();
 						}
 					});
 		} else {
-			Ext.Msg.alert("", Dnet.translate("msg", "invalid_form"));
+			Dnet.error("INVALID_FORM");
 		}
 	}
 

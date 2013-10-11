@@ -58,10 +58,106 @@ dnet.core.base.ApplicationMenu$HelpItems = [ {
 		(new dnet.core.base.FrameInspector({})).show();
 	}
 }, {
-	text : Dnet.translate("cmp", "imp_dp_title"),
-	handler : function() {
-		Ext.create('dnet.core.dc.tools.DcImportWindow', {}).show();
-	}
+	text : Dnet.translate("appmenuitem", "tools__lbl"),
+	menu : new Ext.menu.Menu({
+		items : [ {
+			text : Dnet.translate("cmp", "imp_dp_title"),
+			handler : function() {
+				Ext.create('dnet.core.dc.tools.DcImportWindow', {}).show();
+			}
+		},{
+			text : Dnet.translate("appmenuitem", "upload_imp__lbl"),
+			handler : function() {
+				(new dnet.core.base.FileUploadWindow2({
+					_handler_ : "dsCsvImport",
+					_fields_ : {
+						dsName : {
+							xtype : "combo",
+							fieldLabel : Dnet.translate("cmp","dsName"),
+							labelSeparator : "*",
+							selectOnFocus : true,
+							forceSelection : true,
+							allowBlank : false,
+							autoSelect : true,
+							pageSize : 30,
+							id : Ext.id(),
+							displayField : "name",			 
+							queryMode : 'remote',
+							allQuery : "%",
+							triggerAction: 'query',
+							minChars : 0,
+							matchFieldWidth : false,
+							width : 350,
+							listConfig: {
+								width: 300
+							},
+							store : Ext.create('Ext.data.Store', {
+								fields : [ "id", "name" ],
+								listeners : {
+									beforeload : {
+										fn : function(store, op, eOpts) {
+											store.proxy.extraParams.data = Ext.encode({
+												name : op.params.query+"%"
+											});
+										}
+									}
+								},
+								proxy : {
+									type : 'ajax',
+									api : Dnet.dsAPI(Dnet.dsName.DS_LOV, "json"),
+									actionMethods : {
+										read : 'POST'
+									},
+									reader : {
+										type : 'json',
+										root : 'data',
+										idProperty : 'id',
+										totalProperty : 'totalCount'
+									},
+									startParam : Dnet.requestParam.START,
+									limitParam : Dnet.requestParam.SIZE,
+									sortParam : Dnet.requestParam.SORT,
+									directionParam : Dnet.requestParam.SENSE
+								}
+							}) 
+						},
+						separator : {
+							xtype : "combo",
+							store : [ ";", "," ],
+							value : ",",
+							width : 250,
+							fieldLabel : Dnet.translate("cmp","csv_cfg_separator"),
+							allowBlank : false,
+							labelSeparator : "*"
+						},
+						quoteChar : {
+							xtype : "combo",
+							store : [ '"' ],
+							value : '"',
+							width : 250,
+							fieldLabel : Dnet.translate("cmp","csv_cfg_quote"),
+							allowBlank : false,
+							labelSeparator : "*"
+						},
+						encoding : {
+							xtype : "combo",
+							store : [ "AUTO", "UTF-8" ],
+							value : "UTF-8",
+							width : 250,
+							fieldLabel : Dnet.translate("cmp","csv_cfg_encoding"),
+							allowBlank : false,
+							labelSeparator : "*"
+						} 
+						
+					},
+					_succesCallbackScope_ : this,
+					_succesCallbackFn_ : function() {
+						//this._controller_.doQuery();
+					}
+				})).show();
+			}
+		} ]
+	})
 }, "-", {
 	text : Dnet.translate("appmenuitem", "about__lbl"),
 	handler : function() {

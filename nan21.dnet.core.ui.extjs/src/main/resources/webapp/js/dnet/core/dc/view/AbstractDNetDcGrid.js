@@ -98,43 +98,47 @@ Ext.define("dnet.core.dc.view.AbstractDNetDcGrid", {
 	 */
 	_doImport_ : function() {
 		if (this._importWindow_ == null) {
-			this._importWindow_ = new dnet.core.base.FileUploadWindow2({
-				_handler_ : "dsCsvImport",
-				_fields_ : {
-					separator : {
-						xtype : "combo",
-						store : [ ";", "," ],
-						value : ";",
-						fieldLabel : "Field separator",
-						allowBlank : false,
-						labelSeparator : "*"
-					},
-					quoteChar : {
-						xtype : "combo",
-						store : [ '"' ],
-						value : '"',
-						fieldLabel : "Optionally enclosed by",
-						allowBlank : false,
-						labelSeparator : "*"
-					},
-					encoding : {
-						xtype : "combo",
-						store : [ "AUTO", "UTF-8" ],
-						value : "UTF-8",
-						fieldLabel : "Character encoding",
-						allowBlank : false,
-						labelSeparator : "*"
-					},
-					dsName : {
-						xtype : "hidden",
-						value : this._controller_.dsName
-					}
-				},
-				_succesCallbackScope_ : this,
-				_succesCallbackFn_ : function() {
-					this._controller_.doQuery();
-				}
-			});
+			this._importWindow_ = new dnet.core.base.FileUploadWindow2(
+					{
+						_handler_ : "dsCsvImport",
+						_fields_ : {
+							separator : {
+								xtype : "combo",
+								store : [ ";", "," ],
+								value : ",",
+								fieldLabel : Dnet.translate("cmp",
+										"csv_cfg_separator"),
+								allowBlank : false,
+								labelSeparator : "*"
+							},
+							quoteChar : {
+								xtype : "combo",
+								store : [ '"' ],
+								value : '"',
+								fieldLabel : Dnet.translate("cmp",
+										"csv_cfg_quote"),
+								allowBlank : false,
+								labelSeparator : "*"
+							},
+							encoding : {
+								xtype : "combo",
+								store : [ "AUTO", "UTF-8" ],
+								value : "UTF-8",
+								fieldLabel : Dnet.translate("cmp",
+										"csv_cfg_encoding"),
+								allowBlank : false,
+								labelSeparator : "*"
+							},
+							dsName : {
+								xtype : "hidden",
+								value : this._controller_.dsName
+							}
+						},
+						_succesCallbackScope_ : this,
+						_succesCallbackFn_ : function() {
+							this._controller_.doQuery();
+						}
+					});
 		}
 		this._importWindow_.show();
 	},
