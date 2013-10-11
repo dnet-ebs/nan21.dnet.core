@@ -234,6 +234,7 @@ dnet.core.base.Application = {
 			this.view.getLayout().setActiveItem(1);
 			this.menu.setUserText(this.session.user.name);
 			this.menu.setClientText(this.session.client.code);
+			this.menu.setCompanyText(this.session.company.code);
 			if (this.session.user.systemUser) {
 				this.menu.addSystemMenu();
 			} else {
@@ -268,7 +269,10 @@ dnet.core.base.Application = {
 	 * header
 	 */
 	onCompanyChange : function() {
-		this.menu.setCompanyText(this.session.company.code);
+		var c = this.session.company;
+		this.menu.setCompanyText(c.code);
+		Ext.util.Cookies.set("dnet-compId", c.id);
+		Ext.util.Cookies.set("dnet-compCode", c.code);
 	},
 
 	/**

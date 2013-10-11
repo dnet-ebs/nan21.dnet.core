@@ -37,11 +37,11 @@ dnet.core.base.Session = {
 	 * @type Object
 	 */
 	company : {
-		id : null,
-		code : null,
+		id : Ext.util.Cookies.get("dnet-compId"),
+		code : Ext.util.Cookies.get("dnet-compCode"),
 		name : null
 	},
-	
+
 	/**
 	 * User roles
 	 * 
