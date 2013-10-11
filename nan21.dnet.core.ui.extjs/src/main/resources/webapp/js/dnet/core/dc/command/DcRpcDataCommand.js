@@ -46,7 +46,7 @@ Ext.define("dnet.core.dc.command.DcRpcDataCommand", {
 		p[Dnet.requestParam.SERVICE_NAME_PARAM] = serviceName;
 		p["rpcType"] = "data";
 		if (options.modal) {
-			Ext.Msg.wait(Dnet.translate("msg", "working"));
+			Dnet.working();
 		}
 		Ext.Ajax
 				.request({

@@ -35,7 +35,7 @@ Ext.define("dnet.core.dc.command.DcSaveCommand", {
 					.encode(this.dc.params.data);
 		}
 		// this.activeElement = document.activeElement;
-		Ext.Msg.wait(Dnet.translate("msg", "working"));
+		Dnet.working();
 		this.dc.store.sync({
 			success : this.onAjaxSuccess,
 			scope : this

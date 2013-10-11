@@ -425,13 +425,15 @@ Ext.define("dnet.core.ui.AbstractUi", {
 			defaultIconCls : 'default-icon',
 			text : 'Ready',
 			iconCls : 'x-status-valid',
-			ui: "status-bar",
+			ui : "status-bar",
 			items : [ '-', this.$className ]
 		});
 
-		Ext.Ajax.on("beforerequest", function() {
-			this._statusBar_.setText("Working ... ");
-		}, this);
+		Ext.Ajax.on("beforerequest",
+				function() {
+					this._statusBar_.setText(Dnet.translate("msg", "working")
+							+ "... ");
+				}, this);
 
 		Ext.Ajax.on("requestcomplete",
 				function(conn, response, options, eOpts) {

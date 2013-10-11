@@ -48,12 +48,15 @@ Ext.define("dnet.core.dc.tools.DcImportWindow", {
 				var form = this.up("form").getForm();
 				form.url = Dnet.urlDs + "/import";
 				if (form.isValid()) {
-					form.submit({
+					Dnet.working();
+					form.submit({						
 						success : function(form, action) {
+							Ext.Msg.hide();
 							Dnet.info(Dnet.translate("cmp", "imp_dp_success"));
 							this.up("window").close();
 						},
 						failure : function(form, action) {
+							Ext.Msg.hide();
 							Dnet.error(action.response.responseText);
 						},
 						scope : this

@@ -44,7 +44,7 @@ Ext.define("dnet.core.base.WfStartFormWindowExtjs", {
 			handler : function() {
 				var form = this.up('form').getForm();
 				if (form.isValid()) {
-					Ext.Msg.wait(Dnet.translate("msg", "working"));
+					Dnet.working();
 					form.submit({
 						success : function(form, action) {
 							try {

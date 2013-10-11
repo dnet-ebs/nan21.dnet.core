@@ -730,14 +730,25 @@ Dnet = {
 		});
 	},
 
+	
+	working : function(msg) {
+		msg = msg || this.translate("msg", "working");
+		Ext.Msg.wait(msg);
+	},
+	
 	error : function(msg, params) {
 		this.alert(this.msgType.ERROR, msg, params);
 	},
 
+	warning : function(msg, params) {
+		this.alert(this.msgType.WARNING, msg, params);
+	},
+	
 	info : function(msg, params) {
 		this.alert(this.msgType.INFO, msg, params);
 	},
 
+	
 	alert : function(type, msg, params) {
 		var title = "Error";
 		if (type == this.msgType.INFO) {
@@ -745,7 +756,7 @@ Dnet = {
 		} else if (type == this.msgType.WARNING) {
 			title = "Warning"
 		}
-		Ext.Msg.show({	
+		Ext.Msg.show({
 			title : title,
 			msg : Dnet.translate("msg", msg, null),
 			buttons : Ext.MessageBox.OK,

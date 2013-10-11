@@ -49,7 +49,7 @@ Ext.define("dnet.core.base.NavigationTree", {
 			proxy : {
 				type : 'ajax',
 				method : "POST",
-				url : Dnet.dsAPI("MenuItemRtLov_Ds", "json").read,
+				url : Dnet.dsAPI(Dnet.dsName.MENU_ITEM, "json").read,
 				actionMethods : {
 					read : 'POST'
 				},

@@ -53,7 +53,7 @@ Ext.define("dnet.core.dc.command.DcRpcDataListCommand", {
 		p[Dnet.requestParam.SERVICE_NAME_PARAM] = serviceName;
 		p["rpcType"] = "dataList";
 		if (options.modal) {
-			Ext.Msg.wait(Dnet.translate("msg", "working"));
+			Dnet.working();
 		}
 		Ext.Ajax.request({
 			url : Dnet.dsAPI(dc.dsName, ((options.stream) ? "stream" : "json")).service,

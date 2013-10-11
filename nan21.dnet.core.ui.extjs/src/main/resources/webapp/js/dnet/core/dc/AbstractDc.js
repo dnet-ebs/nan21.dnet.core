@@ -1028,7 +1028,7 @@ Ext.define("dnet.core.dc.AbstractDc", {
 	// p[Dnet.requestParam.SERVICE_NAME_PARAM] = serviceName;
 	// p["rpcType"] = "data";
 	// if (s.modal) {
-	// Ext.Msg.wait(Dnet.translate("msg", "working"));
+	// Dnet.working();
 	// }
 	// return Dnet.dsAPI(this.dsName, "stream").service + "&"
 	// + Ext.urlEncode(p);

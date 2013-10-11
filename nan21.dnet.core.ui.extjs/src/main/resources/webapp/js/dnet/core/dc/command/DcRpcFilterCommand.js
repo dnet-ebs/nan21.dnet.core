@@ -47,7 +47,7 @@ Ext.define("dnet.core.dc.command.DcRpcFilterCommand", {
 		p[Dnet.requestParam.SERVICE_NAME_PARAM] = serviceName;
 		p["rpcType"] = "filter";
 		if (s.modal) {
-			Ext.Msg.wait(Dnet.translate("msg", "working"));
+			Dnet.working();
 		}
 		Ext.Ajax.request({
 			url : Dnet.dsAPI(dc.dsName, "json").service,
