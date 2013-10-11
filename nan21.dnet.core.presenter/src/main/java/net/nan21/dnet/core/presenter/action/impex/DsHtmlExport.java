@@ -50,7 +50,7 @@ public class DsHtmlExport<M> extends AbstractDsExport<M> implements
 			i++;
 		}
 		sb.append("</tr>");
-		this.bufferedWriter.write(sb.toString());
+		this.writer.write(sb.toString());
 
 	}
 
@@ -87,15 +87,15 @@ public class DsHtmlExport<M> extends AbstractDsExport<M> implements
 		}
 		sb.append("</tr></thead>");
 		sb.append("<tbody>");
-		this.bufferedWriter.write(sb.toString());
+		this.writer.write(sb.toString());
 	}
 
 	@Override
 	protected void endContent() throws Exception {
-		this.bufferedWriter.write("</tbody>");
-		this.bufferedWriter.write("</table>");
-		this.bufferedWriter.write("</body>");
-		this.bufferedWriter.write("</html>");
+		this.writer.write("</tbody>");
+		this.writer.write("</table>");
+		this.writer.write("</body>");
+		this.writer.write("</html>");
 	}
 
 }

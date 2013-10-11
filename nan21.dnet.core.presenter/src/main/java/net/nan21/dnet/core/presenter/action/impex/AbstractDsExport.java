@@ -5,10 +5,11 @@
  */
 package net.nan21.dnet.core.presenter.action.impex;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 import java.util.UUID;
@@ -25,7 +26,7 @@ public abstract class AbstractDsExport<M> {
 	private String outFilePath;
 	protected String outFileExtension;
 
-	protected BufferedWriter bufferedWriter;
+	protected Writer writer;
 
 	private Map<String, Object> properties;
 
@@ -84,13 +85,16 @@ public abstract class AbstractDsExport<M> {
 			this.outFile = File.createTempFile(this.outFileName, "."
 					+ this.outFileExtension, dir);
 		}
-		FileWriter fstream = new FileWriter(this.outFile);
-		this.bufferedWriter = new BufferedWriter(fstream);
+		// FileWriter fstream = new FileWriter(this.outFile);
+		// this.writer = new BufferedWriter(fstream);
+		this.writer = new OutputStreamWriter(
+				new FileOutputStream(this.outFile), "UTF-8");
+
 	}
 
 	private void closeWriter() throws IOException {
-		this.bufferedWriter.flush();
-		this.bufferedWriter.close();
+		this.writer.flush();
+		this.writer.close();
 	}
 
 	public IExportInfo getExportInfo() {

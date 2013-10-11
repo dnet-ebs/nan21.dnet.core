@@ -48,7 +48,7 @@ public class DsCsvExport<M> extends AbstractDsExport<M> implements IDsExport<M> 
 			}
 
 		}
-		this.bufferedWriter.write(sb.toString());
+		this.writer.write(sb.toString());
 
 	}
 
@@ -59,10 +59,9 @@ public class DsCsvExport<M> extends AbstractDsExport<M> implements IDsExport<M> 
 				.getColumns();
 		for (ExportField column : columns) {
 			if (!isFirst) {
-				this.bufferedWriter.write(this.csvSeparator);
+				this.writer.write(this.csvSeparator);
 			}
-			this.bufferedWriter.write(StringEscapeUtils.escapeCsv(column
-					.getName()));
+			this.writer.write(StringEscapeUtils.escapeCsv(column.getName()));
 			isFirst = false;
 		}
 	}

@@ -52,18 +52,18 @@ public class DsJsonExport<M> extends AbstractDsExport<M> implements
 
 		}
 		sb.append("}");
-		this.bufferedWriter.write(sb.toString());
+		this.writer.write(sb.toString());
 
 	}
 
 	@Override
 	protected void beginContent() throws Exception {
-		this.bufferedWriter.write("[");
+		this.writer.write("[");
 	}
 
 	@Override
 	protected void endContent() throws Exception {
-		this.bufferedWriter.write("]");
+		this.writer.write("]");
 	}
 
 }

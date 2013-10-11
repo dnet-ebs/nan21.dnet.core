@@ -49,19 +49,19 @@ public class DsXmlExport<M> extends AbstractDsExport<M> implements IDsExport<M> 
 
 		}
 		sb.append("</record>");
-		this.bufferedWriter.write(sb.toString());
+		this.writer.write(sb.toString());
 
 	}
 
 	@Override
 	protected void beginContent() throws Exception {
-		this.bufferedWriter.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		this.bufferedWriter.write("<" + rootTag + ">");
+		this.writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+		this.writer.write("<" + rootTag + ">");
 	}
 
 	@Override
 	protected void endContent() throws Exception {
-		this.bufferedWriter.write("</" + rootTag + ">");
+		this.writer.write("</" + rootTag + ">");
 	}
 
 	public String getRootTag() {
