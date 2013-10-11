@@ -28,7 +28,7 @@ Ext.define("dnet.core.dc.view.DcvEditableGridBuilder", {
 				selectOnFocus : true,
 				noInsert : config.noInsert,
 				noUpdate : config.noUpdate,
-				allowBlank : config.allowBlank
+				allowBlank : ((config.allowBlank === false )? false : true)
 			}
 			if (config.maxLength) {
 				config.editor.maxLength = config.maxLength;

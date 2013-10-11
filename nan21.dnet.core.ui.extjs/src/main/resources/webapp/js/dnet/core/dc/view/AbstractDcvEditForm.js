@@ -183,7 +183,11 @@ Ext.define("dnet.core.dc.view.AbstractDcvEditForm", {
 	},
 
 	_gotoFirstNavigationItem_ : function() {
-		this.down(" textfield").focus();
+		try {
+			this.down(" textfield").focus();
+		} catch(e) {
+			
+		}
 	},
 
 	// /**
