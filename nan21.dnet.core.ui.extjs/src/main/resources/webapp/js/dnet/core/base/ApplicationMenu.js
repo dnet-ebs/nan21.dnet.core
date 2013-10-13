@@ -138,17 +138,7 @@ dnet.core.base.ApplicationMenu$HelpItems = [ {
 							fieldLabel : Dnet.translate("cmp","csv_cfg_quote"),
 							allowBlank : false,
 							labelSeparator : "*"
-						},
-						encoding : {
-							xtype : "combo",
-							store : [ "AUTO", "UTF-8" ],
-							value : "UTF-8",
-							width : 250,
-							fieldLabel : Dnet.translate("cmp","csv_cfg_encoding"),
-							allowBlank : false,
-							labelSeparator : "*"
-						} 
-						
+						}						
 					},
 					_succesCallbackScope_ : this,
 					_succesCallbackFn_ : function() {

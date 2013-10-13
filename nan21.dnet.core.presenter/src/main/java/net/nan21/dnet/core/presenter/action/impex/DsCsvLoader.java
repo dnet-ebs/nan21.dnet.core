@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import net.nan21.dnet.core.presenter.libextensions.HeaderColumnNameMappingStrategy_Dnet;
@@ -83,7 +84,8 @@ public class DsCsvLoader {
 			List<M> list = null;
 			DsCsvLoaderResult<M> result = new DsCsvLoaderResult<M>();
 			// file = new File(this.path + "/"+ this.fileName);
-			inputStreamReader = new InputStreamReader(inputStream);
+			inputStreamReader = new InputStreamReader(inputStream,
+					Charset.forName(this.config.getEncoding()));
 			if (columns != null) {
 				csvReader = new CSVReader(inputStreamReader,
 						this.config.getSeparator(), this.config.getQuoteChar(),

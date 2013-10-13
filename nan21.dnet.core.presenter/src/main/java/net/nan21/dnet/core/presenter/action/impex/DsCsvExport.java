@@ -15,7 +15,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 
 public class DsCsvExport<M> extends AbstractDsExport<M> implements IDsExport<M> {
 
-	private char csvSeparator = ';';
+	private char csvSeparator = ',';
 
 	public DsCsvExport() {
 		super();

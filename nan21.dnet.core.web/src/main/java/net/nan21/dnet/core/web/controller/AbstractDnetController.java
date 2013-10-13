@@ -74,9 +74,7 @@ public abstract class AbstractDnetController implements ApplicationContextAware 
 
 	protected void prepareRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
+ 
 
 		ISessionUser sessionUser = null;
 		IUser user = null;

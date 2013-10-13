@@ -120,15 +120,6 @@ Ext.define("dnet.core.dc.view.AbstractDNetDcGrid", {
 								allowBlank : false,
 								labelSeparator : "*"
 							},
-							encoding : {
-								xtype : "combo",
-								store : [ "AUTO", "UTF-8" ],
-								value : "UTF-8",
-								fieldLabel : Dnet.translate("cmp",
-										"csv_cfg_encoding"),
-								allowBlank : false,
-								labelSeparator : "*"
-							},
 							dsName : {
 								xtype : "hidden",
 								value : this._controller_.dsName
