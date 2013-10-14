@@ -84,7 +84,7 @@ public abstract class AbstractPresenterBaseService extends
 		T delegate;
 		try {
 			delegate = claz.newInstance();
-		} catch (InstantiationException | IllegalAccessException e) {
+		} catch (Exception e) {
 			throw new Exception("Cannot instantiate class"
 					+ claz.getCanonicalName(), e);
 		}

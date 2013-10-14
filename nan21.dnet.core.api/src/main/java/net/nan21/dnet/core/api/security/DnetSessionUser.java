@@ -34,7 +34,7 @@ public class DnetSessionUser implements ISessionUser {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		if (this.authorities == null) {
-			this.authorities = new ArrayList<>();
+			this.authorities = new ArrayList<GrantedAuthority>();
 			for (String role : this.user.getProfile().getRoles()) {
 				this.authorities.add(new SimpleGrantedAuthority(role));
 			}
