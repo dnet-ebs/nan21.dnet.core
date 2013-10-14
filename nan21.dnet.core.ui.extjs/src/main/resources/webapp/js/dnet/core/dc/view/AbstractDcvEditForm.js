@@ -185,8 +185,8 @@ Ext.define("dnet.core.dc.view.AbstractDcvEditForm", {
 	_gotoFirstNavigationItem_ : function() {
 		try {
 			this.down(" textfield").focus();
-		} catch(e) {
-			
+		} catch (e) {
+
 		}
 	},
 
@@ -455,7 +455,7 @@ Ext.define("dnet.core.dc.view.AbstractDcvEditForm", {
 				scope : this
 			}), Ext.apply(Dnet.keyBindings.dc.doNew, {
 				fn : function(keyCode, e) {
-					console.log("AbstractDcvEditForm.doNew");
+					// console.log("AbstractDcvEditForm.doNew");
 					e.stopEvent();
 					this._controller_.doNew();
 				},

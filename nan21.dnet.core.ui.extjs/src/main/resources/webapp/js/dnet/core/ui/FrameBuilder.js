@@ -61,8 +61,6 @@ Ext.define("dnet.core.ui.FrameBuilder", {
 	 */
 	addDcFormView : function(dc, config) {
 		this.addDcView(dc, config);
-		var theDc = this.frame._dcs_.get(dc);
-		var viewId = config.id;
 		return this;
 	},
 
@@ -71,8 +69,6 @@ Ext.define("dnet.core.ui.FrameBuilder", {
 	 */
 	addDcFilterFormView : function(dc, config) {
 		this.addDcView(dc, config);
-		var theDc = this.frame._dcs_.get(dc);
-		var viewId = config.id;
 		return this;
 	},
 

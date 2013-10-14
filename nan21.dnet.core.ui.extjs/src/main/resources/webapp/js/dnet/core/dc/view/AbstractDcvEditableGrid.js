@@ -206,7 +206,6 @@ Ext.define("dnet.core.dc.view.AbstractDcvEditableGrid", {
 	_afterEdit_ : function(editor, e, eOpts) {
 
 	},
-
 	_registerKeyBindings_ : function() {
 		var map = new Ext.util.KeyMap({
 			target : this.view,
@@ -219,81 +218,96 @@ Ext.define("dnet.core.dc.view.AbstractDcvEditableGrid", {
 				event.index = index;
 				return event;
 			},
-			binding : [ Ext.apply(Dnet.keyBindings.dc.doQuery, {
-				fn : function(keyCode, e) {
-					this._controller_.doQuery();
-					e.stopEvent();
-				},
-				scope : this
-			}), Ext.apply(Dnet.keyBindings.dc.doNew, {
-				fn : function(keyCode, e) {
-					this._controller_.doNew();
-					e.stopEvent();
-				},
-				scope : this
-			}), Ext.apply(Dnet.keyBindings.dc.doCancel, {
-				fn : function(keyCode, e) {
-					this._controller_.doCancel();
-					e.stopEvent();
-					this.view.focus();
-				},
-				scope : this
-			}), Ext.apply(Dnet.keyBindings.dc.doSave, {
-				fn : function(keyCode, e) {
-					this._controller_.doSave();
-					e.stopEvent();
-				},
-				scope : this
-			}), Ext.apply(Dnet.keyBindings.dc.doDelete, {
-				fn : function(keyCode, e) {
-					this._controller_.doDeleteSelection();
-					e.stopEvent();
-				},
-				scope : this
-			}), Ext.apply(Dnet.keyBindings.dc.doCopy, {
-				fn : function(keyCode, e) {
-					this._controller_.doCopy();
-					e.stopEvent();
-				},
-				scope : this
-			}), Ext.apply(Dnet.keyBindings.dc.nextPage, {
-				fn : function(keyCode, e) {
-					console.log("AbstractDcvGrid.nextPage");
-					e.stopEvent();
-					this._controller_.nextPage();
-				},
-				scope : this
-			}), Ext.apply(Dnet.keyBindings.dc.prevPage, {
-				fn : function(keyCode, e) {
-					console.log("AbstractDcvGrid.prevPage");
-					e.stopEvent();
-					this._controller_.previousPage();
-				},
-				scope : this
-			}),{
-				// Start editing the first editable column of the selected row
-				key : Ext.EventObject.ENTER,
-				ctrl : false,
-				shift : false,
-				alt : false,
-				fn : function(keyCode, e) {
-					e.stopEvent();
-					var r = this._controller_.record;
-					if (r) {
-						var _c = null;
-						if (r.phantom) {
-							_c = this.query('gridcolumn:not([hidden]):not([noEdit]):not([noInsert])')						
-						} else {
-							_c = this.query('gridcolumn:not([hidden]):not([noEdit]):not([noUpdate])')	
-						}
-						if (_c!=null && _c[0]) {
-							this.getPlugin("cellEditingPlugin").startEdit(r, _c[0]);
-						}
-					}					
-				},
-				scope : this
-			} ]
+			binding : [
+					Ext.apply(Dnet.keyBindings.dc.doQuery, {
+						fn : function(keyCode, e) {
+							this._controller_.doQuery();
+							e.stopEvent();
+						},
+						scope : this
+					}),
+					Ext.apply(Dnet.keyBindings.dc.doNew, {
+						fn : function(keyCode, e) {
+							this._controller_.doNew();
+							e.stopEvent();
+						},
+						scope : this
+					}),
+					Ext.apply(Dnet.keyBindings.dc.doCancel, {
+						fn : function(keyCode, e) {
+							this._controller_.doCancel();
+							e.stopEvent();
+							this.view.focus();
+						},
+						scope : this
+					}),
+					Ext.apply(Dnet.keyBindings.dc.doSave, {
+						fn : function(keyCode, e) {
+							this._controller_.doSave();
+							e.stopEvent();
+						},
+						scope : this
+					}),
+					Ext.apply(Dnet.keyBindings.dc.doDelete, {
+						fn : function(keyCode, e) {
+							this._controller_.doDeleteSelection();
+							e.stopEvent();
+						},
+						scope : this
+					}),
+					Ext.apply(Dnet.keyBindings.dc.doCopy, {
+						fn : function(keyCode, e) {
+							this._controller_.doCopy();
+							e.stopEvent();
+						},
+						scope : this
+					}),
+					Ext.apply(Dnet.keyBindings.dc.nextPage, {
+						fn : function(keyCode, e) {
+							// console.log("AbstractDcvGrid.nextPage");
+							e.stopEvent();
+							this._controller_.nextPage();
+						},
+						scope : this
+					}),
+					Ext.apply(Dnet.keyBindings.dc.prevPage, {
+						fn : function(keyCode, e) {
+							// console.log("AbstractDcvGrid.prevPage");
+							e.stopEvent();
+							this._controller_.previousPage();
+						},
+						scope : this
+					}),
+					{
+						// Start editing the first
+						// editable column of the
+						// selected row
+						key : Ext.EventObject.ENTER,
+						ctrl : false,
+						shift : false,
+						alt : false,
+						fn : function(keyCode, e) {
+							e.stopEvent();
+							var r = this._controller_.record;
+							if (r) {
+								var _c = null;
+								if (r.phantom) {
+									var _q = 'gridcolumn:not([hidden]):'
+											+ 'not([noEdit]):not([noInsert])';
+									_c = this.query(_q);
+								} else {
+									var _q = 'gridcolumn:not([hidden])'
+											+ ':not([noEdit]):not([noUpdate])';
+									_c = this.query(_q);
+								}
+								if (_c != null && _c[0]) {
+									this.getPlugin("cellEditingPlugin")
+											.startEdit(r, _c[0]);
+								}
+							}
+						},
+						scope : this
+					} ]
 		});
 	}
-
 });

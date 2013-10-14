@@ -163,14 +163,14 @@ Ext.define("dnet.core.dc.view.AbstractDcvGrid", {
 				scope : this
 			}), Ext.apply(Dnet.keyBindings.dc.nextPage, {
 				fn : function(keyCode, e) {
-					console.log("AbstractDcvGrid.nextPage");
+					// console.log("AbstractDcvGrid.nextPage");
 					e.stopEvent();
 					this._controller_.nextPage();
 				},
 				scope : this
 			}), Ext.apply(Dnet.keyBindings.dc.prevPage, {
 				fn : function(keyCode, e) {
-					console.log("AbstractDcvGrid.prevPage");
+					// console.log("AbstractDcvGrid.prevPage");
 					e.stopEvent();
 					this._controller_.previousPage();
 				},

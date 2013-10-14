@@ -9,11 +9,11 @@
 dnet.core.dc.DcActionsStateManager = {
 
 	applyStates : function(dc) {
-		 console.log("DcActionsStateManager.applyStates dc = " +
-		 dc.$className);
+		// console.log("DcActionsStateManager.applyStates dc = "
+		// +dc.$className);
 		var flags = dc.dcState;
-
 		var names = dc.actionNames;
+		
 		if ((flags.hasParent && flags.parentIsNull)
 				|| (flags.hasParent && flags.parentIsNew)) {
 			this.disableAll(dc, names);

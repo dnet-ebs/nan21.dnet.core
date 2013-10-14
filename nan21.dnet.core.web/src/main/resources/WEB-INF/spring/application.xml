@@ -40,13 +40,19 @@
 		interface="net.nan21.dnet.core.api.service.presenter.IAsgnServiceFactory" />
 
 	<osgi:list id="osgiFileUploadServiceFactories" cardinality="0..N"
-		interface="net.nan21.dnet.core.api.service.presenter.IFileUploadServiceFactory"/>
+		interface="net.nan21.dnet.core.api.service.IFileUploadServiceFactory"/>
 
 	<osgi:list id="osgiExtensionProviders" cardinality="0..N"
 		interface="net.nan21.dnet.core.api.extensions.IExtensionProvider" />
 
 	<osgi:list id="osgiExtensionContentProviders" cardinality="0..N"
 		interface="net.nan21.dnet.core.api.extensions.IExtensionContentProvider" />
+
+	<bean id="fileUploadServiceFactory"
+		class="net.nan21.dnet.core.presenter.service.FileUploadServiceFactory"/>
+
+	<osgi:service ref="fileUploadServiceFactory"
+		interface="net.nan21.dnet.core.api.service.IFileUploadServiceFactory"/>
 
 	<bean id="application_uiExtjsSettings" class="net.nan21.dnet.core.web.settings.UiExtjsSettings"
 		scope="singleton">		
@@ -62,27 +68,8 @@
 	<bean id="dsCsvImport"  scope="singleton" lazy-init="true"
 		class="net.nan21.dnet.core.presenter.service.ds.DsImportUploadedCsv"/>
 
-	<bean id="fileUploadServiceFactory"
-		class="net.nan21.dnet.core.presenter.service.FileUploadServiceFactory"/>
-  	 
-	<osgi:service ref="fileUploadServiceFactory" ranking="0"
-		interface="net.nan21.dnet.core.api.service.IFileUploadServiceFactory"/>
-
-	<osgi:list id="osgiFileUploadServiceFactories" cardinality="0..N"
-		interface="net.nan21.dnet.core.api.service.IFileUploadServiceFactory" />
-
 	<osgi:reference id="osgiImportDataPackageService"
 		cardinality="0..1" interface="net.nan21.dnet.core.api.service.business.IImportDataPackageService" />
-
-	<!--  
-	<osgi:list id="osgiSetupParticipants" cardinality="0..N"
-		interface="net.nan21.dnet.core.api.setup.ISetupParticipant" />
-
-	<osgi:list id="osgiStartupParticipants" cardinality="0..N"
-		interface="net.nan21.dnet.core.api.setup.IStartupParticipant" />
- 
-	<osgi:reference id="osgiActivitiProcessEngineHolder"
-		cardinality="0..1" interface="net.nan21.dnet.core.api.wf.IActivitiProcessEngineHolder" />
-	-->
+	
 	<import resource="security.xml" />
 </beans>

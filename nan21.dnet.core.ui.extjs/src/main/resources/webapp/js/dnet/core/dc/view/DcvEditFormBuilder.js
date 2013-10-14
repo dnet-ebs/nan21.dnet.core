@@ -171,6 +171,15 @@ Ext.define("dnet.core.dc.view.DcvEditFormBuilder", {
 		return this;
 	},
 
+	addButton : function(config) {
+		Ext.applyIf(config, {
+			id : Ext.id(),
+			xtype : "button"
+		});
+		this.dcv._elems_.add(config.name, config);
+		return this;
+	},
+
 	addChildrenTo : function(c, list) {
 		var items = this.dcv._elems_.get(c)["items"] || [];
 		for ( var i = 0, len = list.length; i < len; i++) {
