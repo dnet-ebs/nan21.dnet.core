@@ -237,9 +237,6 @@
 	"text": "DcBulkEditWindow.js",
 	"path": "/dnet/core/dc/tools/"
 },{
-	"text": "AbstractRemoteCombo.js",
-	"path": "/dnet/core/lov/"
-},{
 	"text": "AbstractCombo.js",
 	"path": "/dnet/core/lov/"
 },{

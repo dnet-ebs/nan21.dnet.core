@@ -55,7 +55,7 @@
 
 			<filelist dir="${sourcePathJsCore}/ui" files="FrameBuilder.js,ActionBuilder.js,FrameButtonStateManager.js,AbstractUi.js" />
 			<filelist dir="${sourcePathJsCore}/dc" files="DcActionsStateManager.js,DcContext.js" />
-			<filelist dir="${sourcePathJsCore}/lov" files="AbstractRemoteCombo.js,AbstractCombo.js" />
+			<filelist dir="${sourcePathJsCore}/lov" files="AbstractCombo.js" />
 		</concat>
 		<echo message="Done." />
 	</target>
