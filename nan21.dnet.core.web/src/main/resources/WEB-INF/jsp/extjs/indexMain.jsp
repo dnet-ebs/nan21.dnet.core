@@ -217,7 +217,7 @@
 				scope : this
 			}), Ext.apply(Dnet.keyBindings.dc.nextRec, {
 				fn : function(keyCode, e) {
-					console.log("indexMain.nextRec");
+					//console.log("indexMain.nextRec");
 					e.stopEvent();
 					var frame = __application__.getActiveFrameInstance();
 					if (frame) {
@@ -228,7 +228,7 @@
 				scope : this
 			}), Ext.apply(Dnet.keyBindings.dc.prevRec, {
 				fn : function(keyCode, e) {
-					console.log("indexMain.prevRec");
+					//console.log("indexMain.prevRec");
 					e.stopEvent();
 					var frame = __application__.getActiveFrameInstance();
 					if (frame) {
@@ -239,7 +239,7 @@
 				scope : this
 			}), Ext.apply(Dnet.keyBindings.dc.nextPage, {
 				fn : function(keyCode, e) {
-					console.log("indexMain.nextPage");
+					//console.log("indexMain.nextPage");
 					e.stopEvent();
 					var frame = __application__.getActiveFrameInstance();
 					if (frame) {
@@ -250,7 +250,7 @@
 				scope : this
 			}), Ext.apply(Dnet.keyBindings.dc.prevPage, {
 				fn : function(keyCode, e) {
-					console.log("indexMain.prevPage");
+					//console.log("indexMain.prevPage");
 					e.stopEvent();
 					var frame = __application__.getActiveFrameInstance();
 					if (frame) {
@@ -268,7 +268,7 @@
     <%@ include file="_loading_mask_remove.jspf" %> 
     
     	var dont_confirm_leave = 0;  
-        var leave_message = 'You sure you want to leave?'
+        var leave_message = 'Are you sure you want to leave?'
         function goodbye(e) 
         {
             if(dont_confirm_leave!==1)

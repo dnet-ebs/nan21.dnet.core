@@ -55,9 +55,9 @@
 	</c:if>
 	<c:if test="${sysCfg_workingMode == 'prod'}">
 		<script type="text/javascript"
-			src="${deploymentUrl}/ui/extjs/frame/${bundle}/${shortLanguage}/${itemSimpleName}.js"></script>
+			src="${deploymentUrl}/ui-extjs/frame/${bundle}/${shortLanguage}/${itemSimpleName}.js"></script>
 		<script type="text/javascript"
-			src="${deploymentUrl}/ui/extjs/frame/${bundle}/${itemSimpleName}.js"></script>
+			src="${deploymentUrl}/ui-extjs/frame/${bundle}/${itemSimpleName}.js"></script>
 	</c:if>
 
 	${extensions}
@@ -104,10 +104,6 @@
 				target : document.body,
 				eventName : 'keydown',
 				processEvent : function(event, source, options) {
-					// event.view = view;
-					// event.store = view.getStore();
-					// event.record = record;
-					// event.index = index;
 					return event;
 				},
 				binding : [ Ext.apply(Dnet.keyBindings.dc.doClearQuery, {
@@ -133,7 +129,7 @@
 					scope : this
 				}), Ext.apply(Dnet.keyBindings.dc.doNew, {
 					fn : function(keyCode, e) {
-						console.log("indexFrame.doNew");
+						//console.log("indexFrame.doNew");
 						e.stopEvent();
 						var ctrl = theFrameInstance._getRootDc_();
 						ctrl.doNew();
@@ -177,7 +173,7 @@
 					scope : this
 				}), Ext.apply(Dnet.keyBindings.dc.nextRec, {
 					fn : function(keyCode, e) {
-						console.log("indexFrame.nextRec");
+						//console.log("indexFrame.nextRec");
 						e.stopEvent();
 						var ctrl = theFrameInstance._getRootDc_();
 						ctrl.setNextAsCurrent();
@@ -185,7 +181,7 @@
 					scope : this
 				}), Ext.apply(Dnet.keyBindings.dc.prevRec, {
 					fn : function(keyCode, e) {
-						console.log("indexFrame.prevRec");
+						//console.log("indexFrame.prevRec");
 						e.stopEvent();
 						var ctrl = theFrameInstance._getRootDc_();
 						ctrl.setPreviousAsCurrent();
@@ -193,14 +189,14 @@
 					scope : this
 				}), Ext.apply(Dnet.keyBindings.dc.nextPage, {
 					fn : function(keyCode, e) {
-						console.log("indexFrame.nextPage");
+						//console.log("indexFrame.nextPage");
 						e.stopEvent();
 						theFrameInstance._getRootDc_().nextPage();
 					},
 					scope : this
 				}), Ext.apply(Dnet.keyBindings.dc.prevPage, {
 					fn : function(keyCode, e) {
-						console.log("indexFrame.prevPage");
+						//console.log("indexFrame.prevPage");
 						e.stopEvent();
 						theFrameInstance._getRootDc_().previousPage();
 					},
