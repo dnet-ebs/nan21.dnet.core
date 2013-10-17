@@ -23,8 +23,13 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DependencyLoader {
+
+	final static Logger logger = LoggerFactory
+			.getLogger(AbstractUiExtjsController.class);
 
 	private ObjectMapper jsonMapper = new ObjectMapper();
 	private HttpClient httpClient = new DefaultHttpClient();
@@ -39,9 +44,7 @@ public class DependencyLoader {
 		List<String> list = new ArrayList<String>();
 		this.resolveFrameDependencies(bundle, name, null, list, null);
 		Writer writer = new BufferedWriter(new OutputStreamWriter(
-			    new FileOutputStream(file), "ISO-8859-1"));  
-		//new FileWriter(file);
-
+				new FileOutputStream(file), "UTF-8")); // ISO-8859-1
 		try {
 			for (String dep : list) {
 				this.writeContentCmp(dep, writer);
@@ -51,13 +54,22 @@ public class DependencyLoader {
 		}
 	}
 
+	/**
+	 * Pack translation files for the frame components.
+	 * 
+	 * @param bundle
+	 * @param name
+	 * @param language
+	 * @param file
+	 * @throws Exception
+	 */
 	public void packFrameTrl(String bundle, String name, String language,
 			File file) throws Exception {
 
 		List<String> list = new ArrayList<String>();
 		this.resolveFrameDependencies(bundle, name, language, null, list);
 		Writer writer = new BufferedWriter(new OutputStreamWriter(
-				    new FileOutputStream(file), "ISO-8859-1"));  
+				new FileOutputStream(file), "ISO-8859-1"));
 
 		try {
 			for (String dep : list) {
@@ -68,6 +80,13 @@ public class DependencyLoader {
 		}
 	}
 
+	/**
+	 * Resolve the dependencies for the given frame.
+	 * 
+	 * @param frame
+	 * @return
+	 * @throws Exception
+	 */
 	public Dependencies resolveFrameDependencies(String frame) throws Exception {
 		Dependencies d = new Dependencies();
 		this.resolveAllDependencies(frame, d);
@@ -88,6 +107,10 @@ public class DependencyLoader {
 			throws Exception {
 
 		String cmp = bundle + "/frame/" + name;
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("Resolving frame dependencies for: {}", cmp);
+		}
 
 		Dependencies d = this.resolveFrameDependencies(cmp);
 
@@ -152,6 +175,9 @@ public class DependencyLoader {
 	}
 
 	private void writeContentByUrl(String url, Writer writer) throws Exception {
+		if (logger.isDebugEnabled()) {
+			logger.debug("Loading content from URL: {}", url);
+		}
 		HttpGet get = new HttpGet(url);
 		ResponseHandler<String> responseHandler = new BasicResponseHandler();
 		String responseBody = getHttpClient().execute(get, responseHandler);
@@ -292,27 +318,32 @@ public class DependencyLoader {
 	 * @return
 	 */
 	private String urlCmp(String bundle, String type, String name) {
-		return urlUiExtjsModules + "/" + bundle + urlUiExtjsModuleSubpath + "/"
-				+ type + "/" + name + ".js";
+		String url = urlUiExtjsModules + "/" + bundle + urlUiExtjsModuleSubpath
+				+ "/" + type + "/" + name + ".js";
+		if (logger.isDebugEnabled()) {
+			logger.debug("Component/Type/Bundle: `{}/{}/{}`, url: `{}` ",
+					new String[] { name, type, bundle, url });
+		}
+		return url;
 	}
 
-	/**
-	 * Return the URL of the translation file for the specified component.
-	 * 
-	 * @param bundle
-	 * @param type
-	 * @param name
-	 * @param language
-	 * @return
-	 */
-	private String urlTrl(String cmp, String language) {
-		String[] tokens = cmp.split("/");
-		String bundle = tokens[0];
-		String type = tokens[1];
-		String name = tokens[2];
-
-		return this.urlTrl(bundle, type, name, language);
-	}
+	// /**
+	// * Return the URL of the translation file for the specified component.
+	// *
+	// * @param bundle
+	// * @param type
+	// * @param name
+	// * @param language
+	// * @return
+	// */
+	// private String urlTrl(String cmp, String language) {
+	// String[] tokens = cmp.split("/");
+	// String bundle = tokens[0];
+	// String type = tokens[1];
+	// String name = tokens[2];
+	//
+	// return this.urlTrl(bundle, type, name, language);
+	// }
 
 	/**
 	 * Return the URL of the translation file for the specified component.
@@ -325,8 +356,14 @@ public class DependencyLoader {
 	 */
 	private String urlTrl(String bundle, String type, String name,
 			String language) {
-		return urlUiExtjsModulesI18n + "/" + language + "/" + bundle + "/"
-				+ type + "/" + name + ".js";
+		String url = urlUiExtjsModulesI18n + "/" + language + "/" + bundle
+				+ "/" + type + "/" + name + ".js";
+		if (logger.isDebugEnabled()) {
+			logger.debug(
+					"Component/Type/Bundle/Language: `{}/{}/{}/{}`, url: `{}` ",
+					new String[] { name, type, bundle, language, url });
+		}
+		return url;
 	}
 
 	public HttpClient getHttpClient() {

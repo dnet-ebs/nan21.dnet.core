@@ -18,14 +18,11 @@
 	  checkAndStart(); 
 	  __checkAuthToken();
 	</script>
-<!-- Extjs 
 
+<!-- Theme /-->	
 <link rel="stylesheet" type="text/css"
-	href="${urlUiExtjsThemes}/resources/ext-theme-${theme}/ext-theme-${theme}-all.css" /> -->
+	href="${urlUiExtjsThemes}/${theme}/${theme}-all.css" />
 	
-	
-<link rel="stylesheet" type="text/css"
-	href="http://localhost/my-costm-theme/my-custom-theme-all.css" />
 </head>
 <body>
 
