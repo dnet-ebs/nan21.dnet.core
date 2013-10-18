@@ -216,23 +216,27 @@ Ext.override(Ext.Editor, {
 
 					if (field.triggerBlur) {
 						// console.log("Ext.override(Ext.Editor face --------->
-						// field.triggerBlur(event)");
-						field.triggerBlur(event);
-						if (_col._dcView_) {
+						// field.triggerBlur(event)");						
+						if (_col && _col._dcView_) {
 							_col._dcView_.getView().focus();
 						}
+						field.triggerBlur(event);
 					}
 					// TODO: move this part to the navigation
 					if (editNext) {
-						var sm = _col._dcView_.getSelectionModel();
-						sm.selectNext();
-						_col._dcView_.getPlugin("cellEditingPlugin").startEdit(
-								sm.getSelection()[0], _col);
+						if (_col && _col._dcView_) {
+							var sm = _col._dcView_.getSelectionModel();
+							sm.selectNext();
+							_col._dcView_.getPlugin("cellEditingPlugin").startEdit(
+									sm.getSelection()[0], _col);
+						}
 					} else if (editPrev) {
-						var sm = _col._dcView_.getSelectionModel();
-						sm.selectPrevious();
-						_col._dcView_.getPlugin("cellEditingPlugin").startEdit(
-								sm.getSelection()[0], _col);
+						if (_col && _col._dcView_) {
+							var sm = _col._dcView_.getSelectionModel();
+							sm.selectPrevious();
+							_col._dcView_.getPlugin("cellEditingPlugin").startEdit(
+									sm.getSelection()[0], _col);
+						}
 					}
 				} else {
 					me.cancelEdit();
