@@ -139,9 +139,11 @@ Ext.define("dnet.core.dc.view.AbstractDNetDcView", {
 		});
 		fields.each(function(field) {
 			var f = this._getElement_(field.name);
-			f.suspendEvents();
-			f.setValue(params.get(field.paramIndex));
-			f.resumeEvents();
+			if (f) {
+				f.suspendEvents();
+				f.setValue(params.get(field.paramIndex));
+				f.resumeEvents();
+			}
 		}, this);
 	},
 

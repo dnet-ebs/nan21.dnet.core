@@ -8,8 +8,15 @@ Ext.define("dnet.core.dc.command.DcClearQueryCommand", {
 	onExecute : function() {
 		var dc = this.dc;
 
-		for ( var p in dc.filter.data) {
-			dc.setFilterValue(p, null, false, "clearQuery");
+		for ( var k in dc.filter.data) {
+			dc.setFilterValue(k, null, false, "clearQuery");
+		}
+		
+		var p = dc.params;
+		for ( var k in dc.params.data) {
+			if (p.fields.get(k).forFilter === true) {
+				dc.setParamValue(k, null, false, "clearQuery");	
+			}
 		}
 
 		if (dc.dcContext) {

@@ -137,7 +137,7 @@ Ext.define("dnet.core.dc.view.AbstractDNetDcForm", {
 	 */
 	_postProcessElem_ : function(item, idx, len) {
 		item["_dcView_"] = this;
-		if (item.fieldLabel == undefined) {
+		if (item.fieldLabel == undefined && item.noLabel !== true) {
 			Dnet.translateField(this._trl_, this._controller_._trl_, item);
 		}
 		return true;

@@ -330,7 +330,7 @@ Ext.define("dnet.core.dc.view.DcvEditFormBuilder", {
 			config.fieldStyle = "text-transform:" + config.caseRestriction
 					+ ";";
 		}
-		if (config.allowBlank === false) {
+		if (config.allowBlank === false && config.noLabel !== true) {
 			config.labelSeparator = "*";
 		}
 		this.dcv._elems_.add(config.name, config);
