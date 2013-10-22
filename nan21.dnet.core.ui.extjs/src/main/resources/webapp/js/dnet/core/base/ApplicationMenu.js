@@ -38,12 +38,7 @@ dnet.core.base.ApplicationMenu$Languages = [ {
  * Help items
  */
 dnet.core.base.ApplicationMenu$HelpItems = [
-		{
-			text : Dnet.translate("appmenuitem", "frameInspector__lbl"),
-			handler : function() {
-				(new dnet.core.base.FrameInspector({})).show();
-			}
-		},
+
 		{
 			text : Dnet.translate("appmenuitem", "tools__lbl"),
 			menu : new Ext.menu.Menu(
@@ -55,10 +50,11 @@ dnet.core.base.ApplicationMenu$HelpItems = [
 									handler : function() {
 										Ext
 												.create(
-														'dnet.core.dc.tools.DcImportWindow',
+														"dnet.core.dc.tools.DcImportWindow",
 														{}).show();
 									}
 								},
+
 								{
 									text : Dnet.translate("appmenuitem",
 											"upload_imp__lbl"),
@@ -166,6 +162,19 @@ dnet.core.base.ApplicationMenu$HelpItems = [
 									}
 								} ]
 					})
+		},
+		"-",
+		{
+			text : Dnet.translate("appmenuitem", "frameInspector__lbl"),
+			handler : function() {
+				(new dnet.core.base.FrameInspector({})).show();
+			}
+		},
+		{
+			text : Dnet.translate("cmp", "keyshortcut_title"),
+			handler : function() {
+				Ext.create("dnet.core.base.KeyboardShortcutsWindow", {}).show();
+			}
 		}, "-", {
 			text : Dnet.translate("appmenuitem", "about__lbl"),
 			handler : function() {

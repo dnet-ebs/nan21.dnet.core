@@ -23,7 +23,6 @@ Ext
 					bodyPadding : 20,
 					closable : true,
 					constrain : true,
-					buttonAlign : "center",
 					modal : true,
 					autoScroll : true,
 
@@ -36,7 +35,8 @@ Ext
 								'<tpl for="dc">',
 								'<p style=" padding-bottom: 5px;">{#}. <i>Key:</i> {alias} <br> <i>Class:</i> {name} <br>',
 								'<i>Data-source: </i> ',
-								'<a href="#" onclick="javascript:var w=window.open( Dnet.dsAPI(\'{dsAlias}\',\'html\').info ,\'DataSourceInfo\',\'width=600,height=500,scrollbars=yes\');w.focus();" >{ds}</a>',
+								'<a href="#" onclick="javascript:var w=window.open( Dnet.dsAPI(\'{dsAlias}\',\'html\').info',
+								',\'DataSourceInfo\',\'width=600,height=500,scrollbars=yes\');w.focus();" >{ds}</a>',
 								'</p></tpl>',
 								'<h3 style="padding-top: 10px;padding-bottom: 10px;"><u>Toolbars</u></h3> ',
 								'<tpl for="tlb">',

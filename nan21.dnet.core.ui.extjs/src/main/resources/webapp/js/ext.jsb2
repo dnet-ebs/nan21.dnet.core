@@ -242,6 +242,9 @@
 },{
 	"text": "UserPreferences.js",
 	"path": "/dnet/core/base/"
+},{
+	"text": "KeyboardShortcutsWindow.js",
+	"path": "/dnet/core/base/"
 }
 
 
