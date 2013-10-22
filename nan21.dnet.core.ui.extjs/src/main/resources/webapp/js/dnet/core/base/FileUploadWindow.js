@@ -43,6 +43,7 @@ Ext.define("dnet.core.base.FileUploadWindow2", {
 			closeAction : "hide",
 			constrain : true,
 			modal : true,
+			buttonAlign : "center",
 			layout : "fit",
 			items : [ {
 				xtype : "form",
