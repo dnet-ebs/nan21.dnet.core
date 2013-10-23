@@ -179,10 +179,17 @@ public class DependencyLoader {
 			logger.debug("Loading content from URL: {}", url);
 		}
 		HttpGet get = new HttpGet(url);
-		ResponseHandler<String> responseHandler = new BasicResponseHandler();
-		String responseBody = getHttpClient().execute(get, responseHandler);
-		writer.write(responseBody);
-		get.releaseConnection();
+		try {
+			ResponseHandler<String> responseHandler = new BasicResponseHandler();
+			String responseBody = getHttpClient().execute(get, responseHandler);
+			writer.write(responseBody);
+		} catch (Exception e) {
+			// ignore maybe doesn't exist
+			e.printStackTrace();
+		} finally {
+			get.releaseConnection();
+		}
+
 	}
 
 	/**
