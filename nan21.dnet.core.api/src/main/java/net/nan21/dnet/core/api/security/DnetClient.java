@@ -5,8 +5,11 @@
  */
 package net.nan21.dnet.core.api.security;
 
-public class DnetClient implements IClient {
+import java.io.Serializable;
 
+public class DnetClient implements IClient, Serializable {
+
+	private static final long serialVersionUID = -9131543374115237340L;
 	private final String id;
 	private final String code;
 	private final String name;

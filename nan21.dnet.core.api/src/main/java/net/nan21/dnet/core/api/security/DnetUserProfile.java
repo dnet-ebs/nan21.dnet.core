@@ -5,10 +5,12 @@
  */
 package net.nan21.dnet.core.api.security;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class DnetUserProfile implements IUserProfile {
+public class DnetUserProfile implements IUserProfile, Serializable {
 
+	private static final long serialVersionUID = -9131543374115237340L;
 	private final boolean administrator;
 	private final List<String> roles;
 
