@@ -1,5 +1,6 @@
 package net.nan21.dnet.core.api.security;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -8,7 +9,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-public class DnetSessionUser implements ISessionUser {
+public class DnetSessionUser implements ISessionUser, Serializable {
 
 	private static final long serialVersionUID = 690259452784508198L;
 

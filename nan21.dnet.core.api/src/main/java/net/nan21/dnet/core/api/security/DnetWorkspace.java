@@ -1,6 +1,10 @@
 package net.nan21.dnet.core.api.security;
 
-public class DnetWorkspace implements IWorkspace {
+import java.io.Serializable;
+
+public class DnetWorkspace implements IWorkspace, Serializable {
+
+	private static final long serialVersionUID = 690259452784508198L;
 
 	private final String workspacePath;
 	private final String importPath;

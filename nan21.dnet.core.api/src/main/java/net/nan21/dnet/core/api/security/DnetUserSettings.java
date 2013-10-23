@@ -5,6 +5,7 @@
  */
 package net.nan21.dnet.core.api.security;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,9 @@ import net.nan21.dnet.core.api.ISettings;
 import net.nan21.dnet.core.api.enums.DateFormatAttribute;
 import net.nan21.dnet.core.api.exceptions.InvalidConfiguration;
 
-public class DnetUserSettings implements IUserSettings {
+public class DnetUserSettings implements IUserSettings, Serializable {
+
+	private static final long serialVersionUID = -9131543374115237340L;
 
 	private String language = Constants.DEFAULT_LANGUAGE;
 
