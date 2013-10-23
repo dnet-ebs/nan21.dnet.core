@@ -288,7 +288,7 @@ dnet.core.base.ApplicationMenu$Items_SystemUser = [ {
 	menu : new Ext.menu.Menu({
 		items : dnet.core.base.ApplicationMenu$SessionControl
 	})
-}, "-", {
+}, {
 	xtype : "splitbutton",
 	text : Dnet.translate("appmenuitem", "help__lbl"),
 	menu : new Ext.menu.Menu({
