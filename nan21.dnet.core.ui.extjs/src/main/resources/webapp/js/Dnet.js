@@ -62,7 +62,7 @@ Dnet = {
 
 	dsName : {
 		VIEW_STATE_LOV : "ViewStateRtLov_Ds",
-		VIEW_STATE : "ViewStateRt_Ds",
+		VIEW_STATE : "ViewState_Ds",
 		MENU : "MenuRtLov_Ds",
 		MENU_ITEM : "MenuItemRtLov_Ds",
 		COMPANY_LOV : "OrgLov_Ds",

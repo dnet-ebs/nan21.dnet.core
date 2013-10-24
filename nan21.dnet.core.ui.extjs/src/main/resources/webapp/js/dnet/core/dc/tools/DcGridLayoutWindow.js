@@ -21,7 +21,7 @@ Ext.define("dnet.core.dc.tools.DcGridLayoutWindow$Model", {
 		name : "cmpType",
 		type : "string"
 	}, {
-		name : "stateValue",
+		name : "value",
 		type : "string"
 	} ]
 });
@@ -84,7 +84,7 @@ Ext.define("dnet.core.dc.tools.DcGridLayoutWindow", {
 	_doSave_ : function() {
 		var s = this._getElement_("fld_views").store;
 		var r = s.getById(this._selectedId_);
-		r.set("stateValue", Ext.JSON.encode(this._grid_._getViewState_()));
+		r.set("value", Ext.JSON.encode(this._grid_._getViewState_()));
 		s.commitChanges();
 		this.close();
 	},
@@ -112,7 +112,7 @@ Ext.define("dnet.core.dc.tools.DcGridLayoutWindow", {
 			params : {
 				data : Ext.JSON.encode({
 					name : name,
-					stateValue : Ext.JSON.encode(this._grid_._getViewState_()),
+					value : Ext.JSON.encode(this._grid_._getViewState_()),
 					cmp : this._grid_.stateId,
 					cmpType : "frame-dcgrid"
 				})
@@ -148,7 +148,7 @@ Ext.define("dnet.core.dc.tools.DcGridLayoutWindow", {
 	_doApply_ : function() {
 		var _store = this._getElement_("fld_views").store;
 		var _rec = _store.getById(this._selectedId_);
-		var _value = Ext.JSON.decode(_rec.get("stateValue"));
+		var _value = Ext.JSON.decode(_rec.get("value"));
 		this._grid_._applyViewState_(_value);
 		this.close();
 	},
@@ -278,20 +278,25 @@ Ext.define("dnet.core.dc.tools.DcGridLayoutWindow", {
 	_buildFields_ : function() {
 		this._elems_.add("fld_views", {
 
+			name : "companyCode",
 			fieldLabel : "Layouts",
 			xtype : "combo",
 			selectOnFocus : true,
 			forceSelection : true,
-			remoteSort : true,
-			remoteFilter : true,
 			autoSelect : true,
-			autoScroll : true,
+			allowBlank : false,
 			allQuery : "*",
+			queryMode : 'remote',
+			allQuery : "%",
+			triggerAction : 'query',
+			minChars : 0,
+			pageSize : 30,
 			id : Ext.id(),
 			displayField : "name",
 			queryMode : 'remote',
+			remoteSort : true,
+			remoteFilter : true,
 			queryDelay : 100,
-			triggerAction : "all",
 
 			listeners : {
 				select : {

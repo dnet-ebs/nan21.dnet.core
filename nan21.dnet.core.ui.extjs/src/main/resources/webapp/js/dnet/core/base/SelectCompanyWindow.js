@@ -79,8 +79,8 @@ Ext.define("dnet.core.base.SelectCompanyWindow", {
 			id : Ext.id(),
 			displayField : "code",			 
 			queryMode : 'remote',
-			queryDelay : 30,
-			triggerAction : "all",
+			queryDelay : 100,
+ 
 			store : Ext.create('Ext.data.Store', {
 				fields : [ "id", "code" ],
 				proxy : {
