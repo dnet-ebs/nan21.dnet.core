@@ -25,11 +25,7 @@ Export-Package:
 Import-Package: 
  au.com.bytecode.opencsv;version="[2.0,3.0)", 
  au.com.bytecode.opencsv.bean;version="[2.0,3.0)", 
- com.sun.mail.handlers;version="[1.4.0,1.4.1]", 
- com.sun.mail.smtp;version="[1.4.0,1.4.1]", 
  freemarker.template;version="[2.3,2.4)", 
- javax.mail;version="[1.4.0,1.4.1]", 
- javax.mail.internet;version="[1.4.0,1.4.1]", 
  javax.persistence;version="[2.0,2.2)", 
  javax.persistence.criteria;version="[2.0,2.2)", 
  javax.persistence.metamodel;version="[2.0,2.2)", 
