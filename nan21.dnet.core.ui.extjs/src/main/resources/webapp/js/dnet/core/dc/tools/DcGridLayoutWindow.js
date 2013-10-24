@@ -6,7 +6,7 @@ Ext.define("dnet.core.dc.tools.DcGridLayoutWindow$Model", {
 	extend : 'Ext.data.Model',
 	fields : [ {
 		name : "id",
-		type : "int",
+		type : "string",
 		useNull : true
 	}, {
 		name : "owner",
