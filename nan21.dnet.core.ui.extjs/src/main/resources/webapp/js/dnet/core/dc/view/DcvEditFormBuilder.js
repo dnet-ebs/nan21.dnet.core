@@ -67,6 +67,9 @@ Ext.define("dnet.core.dc.view.DcvEditFormBuilder", {
 			keyNavEnabled : false,
 			mouseWheelEnabled : false
 		});
+		if (config.decimals) {
+			config.decimalPrecision = config.decimals;
+		}
 		config.fieldStyle = (config.fieldStyle) ? config.fieldStyle
 				+ ";text-align:right;" : "text-align:right;";
 		this.applyModelUpdater(config);
