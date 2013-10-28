@@ -13,12 +13,14 @@ Ext.define("dnet.core.dc.command.DcClearQueryCommand", {
 		}
 		
 		var p = dc.params;
-		for ( var k in dc.params.data) {
-			if (p.fields.get(k).forFilter === true) {
-				dc.setParamValue(k, null, false, "clearQuery");	
+		if (p) {
+			for ( var k in dc.params.data) {
+				if (p.fields.get(k).forFilter === true) {
+					dc.setParamValue(k, null, false, "clearQuery");	
+				}
 			}
 		}
-
+		
 		if (dc.dcContext) {
 			dc.dcContext._updateChildFilter_();
 		}
