@@ -241,7 +241,14 @@ public class ReflookupResolver<M, E> extends AbstractPresenterBase {
 				for (Param p : refLookup.params()) {
 					String paramName = p.name();
 					String fieldName = p.field();
-					Object fieldValue = this._getDsFieldValue(fieldName, ds);
+					String staticValue = p.value();
+
+					Object fieldValue = null;
+					if (staticValue != null && !"".equals(staticValue)) {
+						fieldValue = staticValue;
+					} else {
+						fieldValue = this._getDsFieldValue(fieldName, ds);
+					}
 
 					if (fieldValue == null
 							|| (fieldValue instanceof String && ((String) fieldValue)
@@ -272,7 +279,8 @@ public class ReflookupResolver<M, E> extends AbstractPresenterBase {
 
 					throw new BusinessException("Cannot find  `"
 							+ refClass.getSimpleName() + "` reference using "
-							+ sb.toString() + " for data-source `"+ ds.getClass().getSimpleName() + "`");
+							+ sb.toString() + " for data-source `"
+							+ ds.getClass().getSimpleName() + "`");
 				}
 				setter.invoke(e, theReference);
 				Method refIdFieldInDsSetter = this

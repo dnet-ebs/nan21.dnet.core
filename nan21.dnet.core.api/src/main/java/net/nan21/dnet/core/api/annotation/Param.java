@@ -33,6 +33,10 @@ public @interface Param {
 	/**
 	 * Name of the DS-field whose value is used.
 	 */
-	String field();
+	String field() default "";
 
+	/**
+	 * Static value used as parameter value.
+	 */
+	String value() default "";
 }
