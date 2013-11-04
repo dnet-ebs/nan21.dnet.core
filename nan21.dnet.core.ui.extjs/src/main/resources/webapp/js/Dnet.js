@@ -43,6 +43,7 @@ Dnet = {
 		sd : "net.nan21.dnet.module.sd.",
 		sc : "net.nan21.dnet.module.sc.",
 		pj : "net.nan21.dnet.module.pj.",
+		ix : "net.nan21.dnet.module.ix.",
 		hr : "net.nan21.dnet.module.hr."
 	},
 

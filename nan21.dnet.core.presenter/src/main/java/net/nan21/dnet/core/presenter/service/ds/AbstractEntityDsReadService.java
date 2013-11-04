@@ -6,7 +6,6 @@
 package net.nan21.dnet.core.presenter.service.ds;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -23,6 +22,7 @@ import net.nan21.dnet.core.api.action.impex.IDsExport;
 import net.nan21.dnet.core.api.action.query.IFilterRule;
 import net.nan21.dnet.core.api.action.query.IQueryBuilder;
 import net.nan21.dnet.core.api.action.query.ISortToken;
+import net.nan21.dnet.core.api.service.presenter.IDsReadService;
 import net.nan21.dnet.core.presenter.action.query.QueryBuilderWithJpql;
 import net.nan21.dnet.core.presenter.model.AbstractDsModel;
 
@@ -38,7 +38,8 @@ import net.nan21.dnet.core.presenter.model.AbstractDsModel;
  * @param <E>
  */
 public abstract class AbstractEntityDsReadService<M extends AbstractDsModel<E>, F, P, E>
-		extends AbstractEntityDsBaseService<M, F, P, E> {
+		extends AbstractEntityDsBaseService<M, F, P, E> implements
+		IDsReadService<M, F, P> {
 
 	private static final int DEFAULT_RESULT_START = 0;
 	private static final int DEFAULT_RESULT_SIZE = 500;
@@ -71,56 +72,66 @@ public abstract class AbstractEntityDsReadService<M extends AbstractDsModel<E>, 
 		}
 	}
 
+	@Override
 	public List<M> find(F filter) throws Exception {
 		return this.find(filter, null, null, DEFAULT_RESULT_START,
 				DEFAULT_RESULT_SIZE, null);
 	}
 
+	@Override
 	public List<M> find(F filter, int resultStart, int resultSize)
 			throws Exception {
 		return this.find(filter, null, null, resultStart, resultSize, null);
 	}
 
+	@Override
 	public List<M> find(F filter, P params) throws Exception {
 		return this.find(filter, params, null, DEFAULT_RESULT_START,
 				DEFAULT_RESULT_SIZE, null);
 	}
 
+	@Override
 	public List<M> find(F filter, P params, int resultStart, int resultSize)
 			throws Exception {
 		return this.find(filter, params, null, resultStart, resultSize, null);
 	}
 
+	@Override
 	public List<M> find(F filter, List<IFilterRule> filterRules)
 			throws Exception {
 		return this.find(filter, null, filterRules, DEFAULT_RESULT_START,
 				DEFAULT_RESULT_SIZE, null);
 	}
 
+	@Override
 	public List<M> find(F filter, List<IFilterRule> filterRules,
 			int resultStart, int resultSize) throws Exception {
 		return this.find(filter, null, filterRules, resultStart, resultSize,
 				null);
 	}
 
+	@Override
 	public List<M> find(F filter, P params, List<IFilterRule> filterRules)
 			throws Exception {
 		return this.find(filter, params, filterRules, DEFAULT_RESULT_START,
 				DEFAULT_RESULT_SIZE, null);
 	}
 
+	@Override
 	public List<M> find(F filter, P params, List<IFilterRule> filterRules,
 			int resultStart, int resultSize) throws Exception {
 		return this.find(filter, params, filterRules, resultStart, resultSize,
 				null);
 	}
 
+	@Override
 	public List<M> find(F filter, P params, List<IFilterRule> filterRules,
 			List<ISortToken> sortTokens) throws Exception {
 		return this.find(filter, params, filterRules, DEFAULT_RESULT_START,
 				DEFAULT_RESULT_SIZE, sortTokens);
 	}
 
+	@Override
 	public List<M> find(F filter, P params, List<IFilterRule> filterRules,
 			int resultStart, int resultSize, List<ISortToken> sortTokens)
 			throws Exception {
@@ -133,7 +144,14 @@ public abstract class AbstractEntityDsReadService<M extends AbstractDsModel<E>, 
 		return this.find(bld);
 	}
 
+	@Override
 	public List<M> find(IQueryBuilder<M, F, P> builder) throws Exception {
+		return this.find(builder, null);
+	}
+
+	@Override
+	public List<M> find(IQueryBuilder<M, F, P> builder, List<String> fieldNames)
+			throws Exception {
 
 		if (builder == null) {
 			throw new Exception("Cannot run a query with null query builder.");
@@ -141,25 +159,21 @@ public abstract class AbstractEntityDsReadService<M extends AbstractDsModel<E>, 
 		this.preFind(builder);
 		QueryBuilderWithJpql<M, F, P> bld = (QueryBuilderWithJpql<M, F, P>) builder;
 
-		List<M> result = new ArrayList<M>();
-
-		List<E> list = bld.createQuery(this.getEntityClass())
+		List<E> entities = bld.createQuery(this.getEntityClass())
 				.setFirstResult(bld.getResultStart())
 				.setMaxResults(bld.getResultSize()).getResultList();
 
 		if (logger.isDebugEnabled()) {
 			logger.debug(
 					"Found {} results. Applying entity-to-model conversion ( {} -> {} ) for the result.",
-					new String[] { list.size() + "",
+					new String[] { entities.size() + "",
 							this.getEntityClass().getSimpleName(),
 							this.getModelClass().getSimpleName() });
 		}
 
-		for (E e : list) {
-			M m = this.getModelClass().newInstance();
-			this.getConverter().entityToModel(e, m, bld.getEntityManager());
-			result.add(m);
-		}
+		List<M> result = this.getConverter().entitiesToModels(entities,
+				bld.getEntityManager(), fieldNames);
+
 		this.postFind(builder, result);
 		return result;
 	}
@@ -247,8 +261,8 @@ public abstract class AbstractEntityDsReadService<M extends AbstractDsModel<E>, 
 
 			Query q = bld.createQuery(this.getEntityClass())
 					.setHint(QueryHints.CURSOR, true)
-					.setHint(QueryHints.CURSOR_INITIAL_SIZE, 30)
-					.setHint(QueryHints.CURSOR_PAGE_SIZE, 30)
+					.setHint(QueryHints.CURSOR_INITIAL_SIZE, 100)
+					.setHint(QueryHints.CURSOR_PAGE_SIZE, 100)
 					.setHint(QueryHints.READ_ONLY, HintValues.TRUE)
 					.setFirstResult(bld.getResultStart())
 					.setMaxResults(bld.getResultSize());
@@ -261,7 +275,7 @@ public abstract class AbstractEntityDsReadService<M extends AbstractDsModel<E>, 
 			while (c.hasMoreElements()) {
 				ds = getModelClass().newInstance();
 				this.getConverter().entityToModel((E) c.nextElement(), ds,
-						bld.getEntityManager());
+						bld.getEntityManager(), null);
 				writer.write(ds, isFirst);
 				isFirst = false;
 			}

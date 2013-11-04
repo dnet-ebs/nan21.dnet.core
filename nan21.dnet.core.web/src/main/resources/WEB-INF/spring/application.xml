@@ -54,8 +54,8 @@
 	<osgi:service ref="fileUploadServiceFactory"
 		interface="net.nan21.dnet.core.api.service.IFileUploadServiceFactory"/>
 
-	<bean id="application_uiExtjsSettings" class="net.nan21.dnet.core.web.settings.UiExtjsSettings"
-		scope="singleton">		
+	<bean id="application_uiExtjsSettings"  scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.web.settings.UiExtjsSettings">		
 		<property name="urlCore" value="${url.ui.extjs.core}" />
 		<property name="urlCoreI18n" value="${url.ui.extjs.core.i18n}" />
 		<property name="urlModules" value="${url.ui.extjs.modules}" />		
@@ -65,7 +65,7 @@
 		<property name="cacheFolder" value="${cache.ui.extjs}" />
 	</bean>
 
-	<bean id="dsCsvImport"  scope="singleton" lazy-init="true"
+	<bean id="dsCsvImport" scope="singleton" lazy-init="true"
 		class="net.nan21.dnet.core.presenter.service.ds.DsImportUploadedCsv"/>
 
 	<osgi:reference id="osgiImportDataPackageService"

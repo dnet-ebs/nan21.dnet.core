@@ -11,10 +11,10 @@
 		http://www.springframework.org/schema/osgi
 		http://www.springframework.org/schema/osgi/spring-osgi.xsd">
 
-	<bean name="securityAccessDeniedHandler"
+	<bean name="securityAccessDeniedHandler" scope="singleton" lazy-init="true"
 		class="net.nan21.dnet.core.web.security.DefaultAccessDeniedHandler" />
 
-	<bean name="securityAuthenticationEntryPoint"
+	<bean name="securityAuthenticationEntryPoint" scope="singleton" lazy-init="true"
 		class="net.nan21.dnet.core.web.security.DefaultNotAuthenticatedEntryPoint" />
 
 	<security:http security="none" pattern="/security/*">

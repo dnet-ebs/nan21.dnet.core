@@ -156,7 +156,7 @@ public abstract class AbstractEntityDsWriteService<M extends AbstractDsModel<E>,
 			E e = ((AbstractDsModel<E>) ds)._getEntity_();
 			postInsertBeforeModel(ds, e, params);
 			this.getConverter().entityToModel(e, ds,
-					_entityService.getEntityManager());
+					_entityService.getEntityManager(), null);
 			postInsertAfterModel(ds, e, params);
 		}
 		this.postInsert(list, params);
@@ -297,7 +297,7 @@ public abstract class AbstractEntityDsWriteService<M extends AbstractDsModel<E>,
 					((IModelWithId) ds).getId());
 			postUpdateBeforeModel(ds, e, params);
 			this.getConverter().entityToModel(e, ds,
-					_entityService.getEntityManager());
+					_entityService.getEntityManager(), null);
 			postUpdateAfterModel(ds, e, params);
 		}
 		this.postUpdate(list, params);

@@ -48,7 +48,7 @@
 
 			<filelist dir="${sourcePathJsCore}/dc" files="DcState.js,AbstractDc.js,DcActionsFactory.js,DcCommandFactory.js" />						
 			<filelist dir="${sourcePathJsCore}/dc/view" files="AbstractDNetDcView.js,AbstractDNetDcGrid.js,AbstractDNetDcForm.js,AbstractDNetDcPropGrid.js,AbstractDcvGrid.js,AbstractDcvEditableGrid.js,AbstractDcvEditForm.js,AbstractDcvEditPropGrid.js,AbstractDcvTree.js,AbstractDcvFilterForm.js,AbstractDcvFilterPropGrid.js,DcvFilterFormBuilder.js,DcvFilterPropGridBuilder.js,DcvEditFormBuilder.js,DcvEditPropGridBuilder.js,DcvGridBuilder.js,DcvEditableGridBuilder.js" />			
-			<filelist dir="${sourcePathJsCore}/dc/tools" files="DcBulkEditWindow.js,DcFilterWindow.js,DcImportWindow.js,DcExportWindow.js,DcPrintWindow.js,DcSortWindow.js,DcGridLayoutWindow.js" />
+			<filelist dir="${sourcePathJsCore}/dc/tools" files="DcBulkEditWindow.js,DcFilterWindow.js,DcImportWindow.js,DcExportWindow.js,DcChartWindow.js,DcPrintWindow.js,DcSortWindow.js,DcGridLayoutWindow.js" />
 			<filelist dir="${sourcePathJsCore}/dc/command" files="AbstractDcCommand.js,AbstractDcAsyncCommand.js,AbstractDcSyncCommand.js" />
 			<filelist dir="${sourcePathJsCore}/dc/command" files="DcQueryCommand.js,DcNewCommand.js,DcCopyCommand.js,DcSaveCommand.js,DcCancelCommand.js,DcEditInCommand.js,DcEditOutCommand.js" />
 			<filelist dir="${sourcePathJsCore}/dc/command" files="DcClearQueryCommand.js,DcDeleteCommand.js,DcReloadRecCommand.js,DcPrevRecCommand.js,DcNextRecCommand.js,DcRpcDataCommand.js,DcRpcDataListCommand.js,DcRpcFilterCommand.js" />

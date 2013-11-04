@@ -19,7 +19,7 @@
 		<property name="extensionContentProviders" ref="osgiExtensionContentProviders" />
 	</bean>
 
-	<bean
+	<bean scope="singleton" lazy-init="true"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />

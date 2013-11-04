@@ -46,6 +46,11 @@ Ext.define("dnet.core.dc.view.AbstractDNetDcGrid", {
 	_noPrint_ : false,
 
 	/**
+	 * Flag to switch on/off chart.
+	 */
+	_noChart_ : true,
+	
+	/**
 	 * Flag to switch on/off custom layout management.
 	 */
 	_noLayoutCfg_ : false,
@@ -160,6 +165,19 @@ Ext.define("dnet.core.dc.view.AbstractDNetDcGrid", {
 		this._printWindow_.show();
 	},
 
+	/**
+	 * Open the chart window
+	 */
+	_doChart_ : function() {
+		if (this._chartWindow_ == null) {
+			this._chartWindow_ = new dnet.core.dc.tools.DcChartWindow({
+				_grid_ : this,
+				closeAction : "hide"
+			});
+		}
+		this._chartWindow_.show();
+	},
+	
 	/**
 	 * Show the advanced sort window
 	 */
@@ -339,6 +357,13 @@ Ext.define("dnet.core.dc.view.AbstractDNetDcGrid", {
 				this._get_("_btnPrint_").disable();
 			}
 		}
+		if (!this._noChart_) {
+			if (store.getCount() > 0) {
+				this._get_("_btnChart_").enable();
+			} else {
+				this._get_("_btnChart_").disable();
+			}
+		}
 		/*
 		 * restore the selected records from the controller. Select first if
 		 * record from store if controller has no selection or the current store
@@ -396,6 +421,11 @@ Ext.define("dnet.core.dc.view.AbstractDNetDcGrid", {
 		if (!this._noPrint_) {
 			bbitems.push("-");
 			bbitems.push(this._elems_.get("_btnPrint_"));
+		}
+		
+		if (!this._noChart_) {
+			bbitems.push("-");
+			bbitems.push(this._elems_.get("_btnChart_"));
 		}
 	},
 
@@ -495,6 +525,27 @@ Ext.define("dnet.core.dc.view.AbstractDNetDcGrid", {
 			});
 		}
 	},
+	
+	
+	_getBtnChartCfg_ : function() {
+		var c = {
+			xtype : "button",
+			id : Ext.id(),
+			disabled : true,
+			tooltip : Dnet.translate("dcvgrid", "chart__tlp"),
+			handler : this._doChart_,
+			scope : this
+		};
+		if (Dnet.viewConfig.USE_TOOLBAR_ICONS) {
+			return Ext.apply(c, {
+				iconCls : 'icon-action-chart'
+			});
+		} else {
+			return Ext.apply(c, {
+				text : Dnet.translate("dcvgrid", "chart__lbl")
+			});
+		}
+	},
 
 	_getBtnLayoutCfg_ : function() {
 		var c = {
@@ -525,6 +576,7 @@ Ext.define("dnet.core.dc.view.AbstractDNetDcGrid", {
 		this._elems_.add("_btnSort_", this._getBtnSortCfg_());
 		this._elems_.add("_btnFilter_", this._getBtnFilterCfg_());
 		this._elems_.add("_btnLayout_", this._getBtnLayoutCfg_());
+		this._elems_.add("_btnChart_", this._getBtnChartCfg_());
 	},
 
 	/**

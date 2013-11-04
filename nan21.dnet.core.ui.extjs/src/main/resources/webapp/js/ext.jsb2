@@ -228,6 +228,9 @@
 	"text": "DcFilterWindow.js",
 	"path": "/dnet/core/dc/tools/"
 },{
+	"text": "DcChartWindow.js",
+	"path": "/dnet/core/dc/tools/"
+},{
 	"text": "DcPrintWindow.js",
 	"path": "/dnet/core/dc/tools/"
 },{

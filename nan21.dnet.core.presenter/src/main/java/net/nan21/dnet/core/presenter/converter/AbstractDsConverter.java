@@ -6,6 +6,8 @@
 package net.nan21.dnet.core.presenter.converter;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,23 +54,77 @@ public abstract class AbstractDsConverter<M, E> extends AbstractPresenterBase
 		this.parser = new SpelExpressionParser();
 	}
 
+	@Override
+	public List<M> entitiesToModels(List<E> entities, EntityManager em,
+			List<String> fieldNames) throws Exception {
+		List<M> result = new ArrayList<M>();
+		Method[] methods = this.getModelClass().getMethods();
+		int l = methods.length;
+		Map<String, Method> setters = new HashMap<String, Method>();
+		for (int i = 0; i < l; i++) {
+			Method method = methods[i];
+			if (method.getName().startsWith("set")
+					&& !method.getName().equals("set__clientRecordId__")) {
+				String fieldName = StringUtils.uncapitalize(method.getName()
+						.substring(3));
+				if (fieldNames == null || fieldNames.contains(fieldName)) {
+					setters.put(fieldName, method);
+				}
+			}
+		}
+		Map<String, String> refpaths = this.descriptor.getE2mConv();
+		for (E e : entities) {
+			M m = modelClass.newInstance();
+			this.entityToModel_(e, m, em, setters, refpaths);
+			result.add(m);
+		}
+		return result;
+	}
+
 	/**
 	 * Populate model fields from entity according to mappings.
 	 */
 	@Override
-	public void entityToModel(E e, M m, EntityManager em) throws Exception {
-
-		StandardEvaluationContext context = new StandardEvaluationContext(e);
-		Map<String, String> refpaths = this.descriptor.getE2mConv();
+	public void entityToModel(E e, M m, EntityManager em,
+			List<String> fieldNames) throws Exception {
 		Method[] methods = this.getModelClass().getMethods();
-		for (Method method : methods) {
+		int l = methods.length;
+		Map<String, Method> setters = new HashMap<String, Method>();
+		for (int i = 0; i < l; i++) {
+			Method method = methods[i];
 			if (method.getName().startsWith("set")
 					&& !method.getName().equals("set__clientRecordId__")) {
-				String fn = StringUtils.uncapitalize(method.getName()
+				String fieldName = StringUtils.uncapitalize(method.getName()
 						.substring(3));
+				if (fieldNames == null || fieldNames.contains(fieldName)) {
+					setters.put(fieldName, method);
+				}
+			}
+		}
+		Map<String, String> refpaths = this.descriptor.getE2mConv();
+		entityToModel_(e, m, em, setters, refpaths);
+	}
+
+	/**
+	 * Populate model fields from entity according to mappings.
+	 */
+
+	protected void entityToModel_(E e, M m, EntityManager em,
+			Map<String, Method> setters, Map<String, String> refpaths)
+			throws Exception {
+
+		StandardEvaluationContext context = new StandardEvaluationContext(e);
+
+		for (Map.Entry<String, Method> entry : setters.entrySet()) {
+			String fieldName = entry.getKey();
+			Method method = entry.getValue();
+
+			if (method.getName().startsWith("set")
+					&& !method.getName().equals("set__clientRecordId__")) {
 				try {
-					method.invoke(m, parser.parseExpression(refpaths.get(fn))
-							.getValue(context));
+					method.invoke(m,
+							parser.parseExpression(refpaths.get(fieldName))
+									.getValue(context));
 				} catch (Exception exc) {
 
 				}

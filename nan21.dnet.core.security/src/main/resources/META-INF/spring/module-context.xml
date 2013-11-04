@@ -19,7 +19,8 @@
 		persistent-id="net.nan21.dnet" />
 
 	<!-- AUTHENTICATION -->
-	<bean id="adminUsersRepository" class="net.nan21.dnet.core.security.SystemAdministratorUsers">
+	<bean id="adminUsersRepository"  scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.security.SystemAdministratorUsers">
 		<property name="users">
 			<list>
 				<bean class="net.nan21.dnet.core.security.SystemAdministratorUser">
@@ -37,7 +38,8 @@
 		</property>
 	</bean>
 	
-	<bean name="authenticationSystemUserService" class="net.nan21.dnet.core.security.DefaultAuthenticationSystemUserService">
+	<bean name="authenticationSystemUserService"  scope="singleton" lazy-init="true" 
+		class="net.nan21.dnet.core.security.DefaultAuthenticationSystemUserService">
 		<property name="repository" ref="adminUsersRepository" />
 		<property name="settings" ref="osgiSettings" />
 	</bean>
@@ -45,11 +47,13 @@
 	<!-- Un-comment these when a bare framework runtime is deployed. 
 		Otherwise these services are provided by dnet.module.ad.security bundle. 
 
-	<bean name="authenticationClientUserService" class="net.nan21.dnet.core.security.DefaultAuthenticationClientUserService"/>
+	<bean name="authenticationClientUserService"  scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.security.DefaultAuthenticationClientUserService"/>
 
-	<bean name="authorizationFactory" class="net.nan21.dnet.core.security.DummyAuthorizationFactory" />
-	<bean class="net.nan21.dnet.core.security.DummyAuthorizationForAsgn" lazy-init="true"/>
-	<bean class="net.nan21.dnet.core.security.DummyAuthorizationForDs" lazy-init="true"/>
-	<bean class="net.nan21.dnet.core.security.DummyAuthorizationForJob" lazy-init="true"/>
+	<bean name="authorizationFactory"  scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.security.DummyAuthorizationFactory" />
+	<bean class="net.nan21.dnet.core.security.DummyAuthorizationForAsgn"  scope="singleton" lazy-init="true"/>
+	<bean class="net.nan21.dnet.core.security.DummyAuthorizationForDs"  scope="singleton" lazy-init="true"/>
+	<bean class="net.nan21.dnet.core.security.DummyAuthorizationForJob"  scope="singleton" lazy-init="true"/>
 	-->
 </beans>

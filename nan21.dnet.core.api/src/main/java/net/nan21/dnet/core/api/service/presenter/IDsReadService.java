@@ -51,6 +51,9 @@ public interface IDsReadService<M, F, P> extends IDsRpcService<M, F, P> {
 
 	public List<M> find(IQueryBuilder<M, F, P> builder) throws Exception;
 
+	public List<M> find(IQueryBuilder<M, F, P> builder, List<String> fieldNames)
+			throws Exception;
+
 	public Long count(IQueryBuilder<M, F, P> builder) throws Exception;
 
 	public void doExport(IQueryBuilder<M, F, P> builder, IDsExport<M> writer)

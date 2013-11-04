@@ -43,7 +43,8 @@ public abstract class AbstractEntityDsRpcService<M extends AbstractDsModel<E>, F
 	public void rpcData(String procedureName, M ds, P params) throws Exception {
 
 		if (!rpcData.containsKey(procedureName)) {
-			throw new Exception("No such procedure defined: `" + procedureName + "`");
+			throw new Exception("No such procedure defined: `" + procedureName
+					+ "`");
 		}
 
 		RpcDefinition def = rpcData.get(procedureName);
@@ -63,7 +64,7 @@ public abstract class AbstractEntityDsRpcService<M extends AbstractDsModel<E>, F
 				if (((IModelWithId) ds).getId() != null) {
 					E e = (E) em.find(this.getEntityClass(),
 							((IModelWithId) ds).getId());
-					this.getConverter().entityToModel(e, ds, em);
+					this.getConverter().entityToModel(e, ds, em, null);
 				}
 			}
 		}
@@ -201,7 +202,7 @@ public abstract class AbstractEntityDsRpcService<M extends AbstractDsModel<E>, F
 						EntityManager em = this.getEntityService()
 								.getEntityManager();
 						E e = (E) em.find(this.getEntityClass(), _id);
-						this.getConverter().entityToModel(e, ds, em);
+						this.getConverter().entityToModel(e, ds, em, null);
 					}
 				}
 			}

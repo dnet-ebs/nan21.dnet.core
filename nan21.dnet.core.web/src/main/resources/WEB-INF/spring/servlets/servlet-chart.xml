@@ -5,8 +5,8 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean name="sessionController" scope="singleton" lazy-init="true"
-		class="net.nan21.dnet.core.web.controller.session.SessionController">
+	<bean name="chartController" scope="singleton" lazy-init="true"
+		class="net.nan21.dnet.core.web.controller.ui.chart.ChartController">
 	</bean>
 
 	<bean scope="singleton" lazy-init="true"

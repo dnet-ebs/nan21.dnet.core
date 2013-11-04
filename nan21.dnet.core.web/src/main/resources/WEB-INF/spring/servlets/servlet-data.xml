@@ -17,7 +17,7 @@
 		class="net.nan21.dnet.core.web.controller.data.ImportDataPackageController">
 	</bean>
 
-	<bean
+	<bean scope="singleton" lazy-init="true"
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
 			<list>

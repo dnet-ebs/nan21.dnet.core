@@ -194,6 +194,8 @@
 	src="${urlUiExtjsCore}/js/dnet/core/dc/tools/DcFilterWindow.js"></script>
 <script type="text/javascript"
 	src="${urlUiExtjsCore}/js/dnet/core/dc/tools/DcGridLayoutWindow.js"></script>
+<script type="text/javascript"
+	src="${urlUiExtjsCore}/js/dnet/core/dc/tools/DcChartWindow.js"></script>	
 
 <!-- frame -->
 

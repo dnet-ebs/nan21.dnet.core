@@ -17,7 +17,7 @@
 		persistent-id="net.nan21.dnet" />
 
 	<bean id="settings" class="net.nan21.dnet.core.api.Settings"
-		scope="singleton">
+		 scope="singleton" lazy-init="true">
 		
 		<constructor-arg>
 			<props>
@@ -63,7 +63,7 @@
 		<property name="productVersion" value="2.0.0" />		 
 	</bean>
 
-	<bean name="sysparams" class="net.nan21.dnet.core.api.SysParams_Core">
+	<bean name="sysparams" class="net.nan21.dnet.core.api.SysParams_Core"  scope="singleton" lazy-init="true">
 		<property name="defaultValues">
 			<props>
 				<prop key="CORE_LOGO_URL_EXTJS">${sysparam.CORE_LOGO_URL_EXTJS}</prop>
