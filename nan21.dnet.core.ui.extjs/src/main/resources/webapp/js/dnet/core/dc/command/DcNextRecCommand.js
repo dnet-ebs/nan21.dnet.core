@@ -5,7 +5,7 @@
 Ext.define("dnet.core.dc.command.DcNextRecCommand", {
 	extend : "dnet.core.dc.command.AbstractDcSyncCommand",
 
-	onExecute : function() {
+	onExecute : function(options) {
 		var dc = this.dc;
 		if (dc.selectedRecords.length <= 1) {
 			var crtIdx = dc.store.indexOf(dc.record);

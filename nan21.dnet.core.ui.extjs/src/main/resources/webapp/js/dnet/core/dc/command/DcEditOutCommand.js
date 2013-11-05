@@ -5,8 +5,8 @@
 Ext.define("dnet.core.dc.command.DcEditOutCommand", {
 	extend : "dnet.core.dc.command.AbstractDcSyncCommand",
 
-	onExecute : function() {
-		this.dc.fireEvent("onEditOut", this);
+	onExecute : function(options) {
+		this.dc.fireEvent("onEditOut", this, options);
 	},
 
 	isActionAllowed : function() {

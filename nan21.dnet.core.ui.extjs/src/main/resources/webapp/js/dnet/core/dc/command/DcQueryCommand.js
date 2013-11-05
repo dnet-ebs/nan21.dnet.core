@@ -13,7 +13,7 @@ Ext.define("dnet.core.dc.command.DcQueryCommand", {
 		}
 	},
 
-	onExecute : function() {
+	onExecute : function(options) {
 		var dc = this.dc;
 		var _p = dc.buildRequestParamsForQuery();
 		Ext.apply(dc.store.proxy.extraParams, _p);

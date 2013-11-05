@@ -13,16 +13,33 @@ Ext.define("dnet.core.dc.command.DcDeleteCommand", {
 				"dc_confirm_delete_selection");
 	},
 
-	onExecute : function() {
+	onExecute : function(options) {
 		var dc = this.dc;
 		dc.store.remove(dc.getSelectedRecords());
 		if (!dc.multiEdit) {
-			dc.store.sync();
+			dc.store.sync({
+				success : this.onAjaxSuccess,
+				scope : this,
+				options: options
+			});
 		} else {
 			dc.doDefaultSelection();
 		}		
 	},
 
+	onAjaxSuccess : function(batch, options) {
+		Ext.Msg.hide();
+
+		// if (options.operation.action == "update" || options.operation.action
+		// == "create") {
+		//this.dc.afterDoSaveSuccess();
+		// }
+
+		this.dc.requestStateUpdate();
+		this.dc.fireEvent("afterDoCommitSuccess", this.dc, options.options);
+
+	},
+	
 	isActionAllowed : function() {
 		if (dnet.core.dc.DcActionsStateManager.isDeleteDisabled(this.dc)) {
 			this.dc.warning(Dnet.msg.DC_DELETE_NOT_ALLOWED, "msg");

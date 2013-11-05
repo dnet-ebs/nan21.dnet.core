@@ -5,7 +5,7 @@
 Ext.define("dnet.core.dc.command.DcClearQueryCommand", {
 	extend : "dnet.core.dc.command.AbstractDcSyncCommand",
 
-	onExecute : function() {
+	onExecute : function(options) {
 		var dc = this.dc;
 
 		for ( var k in dc.filter.data) {

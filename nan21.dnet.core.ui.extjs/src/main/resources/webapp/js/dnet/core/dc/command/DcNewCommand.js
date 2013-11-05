@@ -5,11 +5,11 @@
 Ext.define("dnet.core.dc.command.DcNewCommand", {
 	extend : "dnet.core.dc.command.AbstractDcSyncCommand",
 
-	onExecute : function() {
+	onExecute : function(options) {
 		var dc = this.dc;
 		var store = dc.store;
 
-		if (!dc.multiEdit && dc.isDirty()) {			 
+		if (!dc.multiEdit && dc.isDirty()) {
 			this.dc.warning(Dnet.msg.DIRTY_DATA_FOUND, "msg");
 		}
 
@@ -30,7 +30,8 @@ Ext.define("dnet.core.dc.command.DcNewCommand", {
 		}
 
 		dc.fireEvent("afterDoNew", {
-			dc : dc
+			dc : dc,
+			options : options
 		});
 	},
 

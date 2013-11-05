@@ -4,8 +4,8 @@
  */
 Ext.define("dnet.core.dc.command.DcEditInCommand", {
 	extend : "dnet.core.dc.command.AbstractDcSyncCommand",
- 
-	onExecute : function() {
-		this.dc.fireEvent("onEditIn", this);
+
+	onExecute : function(options) {
+		this.dc.fireEvent("onEditIn", this, options);
 	}
 });

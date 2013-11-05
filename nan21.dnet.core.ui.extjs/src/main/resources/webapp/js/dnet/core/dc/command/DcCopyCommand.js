@@ -7,7 +7,7 @@ Ext.define("dnet.core.dc.command.DcCopyCommand", {
 
 	dcApiMethod : dnet.core.dc.DcActionsFactory.COPY,
 
-	onExecute : function() {
+	onExecute : function(options) {
 		var dc = this.dc;
 		var store = dc.store;
 

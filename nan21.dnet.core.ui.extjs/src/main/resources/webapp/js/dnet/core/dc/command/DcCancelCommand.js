@@ -5,7 +5,7 @@
 Ext.define("dnet.core.dc.command.DcCancelCommand", {
 	extend : "dnet.core.dc.command.AbstractDcSyncCommand",
 
-	onExecute : function() {
+	onExecute : function(options) {
 		var dc = this.dc;
 		if (dc.store.getCount() == 0) {
 			this.discardChanges();

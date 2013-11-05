@@ -13,9 +13,8 @@ Ext.define("dnet.core.dc.command.DcReloadRecCommand", {
 		return true;
 	},
 
-	onExecute : function(dc) {
+	onExecute : function(options) {
 		var dc = this.dc;
-
 		Ext.Ajax.request({
 			url : dc.store.proxy.api.load,
 			params : {
@@ -26,7 +25,6 @@ Ext.define("dnet.core.dc.command.DcReloadRecCommand", {
 			success : this.onReload,
 			scope : this
 		});
-
 	},
 
 	onReload : function(response, opts) {

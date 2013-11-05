@@ -29,7 +29,7 @@ Ext.define("dnet.core.dc.command.DcSaveCommand", {
 
 	// activeElement : null,
 
-	onExecute : function() {
+	onExecute : function(options) {
 		if (this.dc.params != null) {
 			this.dc.store.proxy.extraParams.params = Ext.JSON
 					.encode(this.dc.params.data);
@@ -38,7 +38,8 @@ Ext.define("dnet.core.dc.command.DcSaveCommand", {
 		Dnet.working();
 		this.dc.store.sync({
 			success : this.onAjaxSuccess,
-			scope : this
+			scope : this,
+			options: options
 		});
 	},
 
@@ -51,7 +52,7 @@ Ext.define("dnet.core.dc.command.DcSaveCommand", {
 		// }
 
 		this.dc.requestStateUpdate();
-		this.dc.fireEvent("afterDoCommitSuccess", this.dc);
+		this.dc.fireEvent("afterDoCommitSuccess", this.dc, options.options);
 
 	},
 

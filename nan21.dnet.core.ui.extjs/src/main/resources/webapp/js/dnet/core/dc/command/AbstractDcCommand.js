@@ -154,7 +154,7 @@ Ext.define("dnet.core.dc.command.AbstractDcCommand", {
 	 * Empty template method meant to be overriden by the subclasses.
 	 * 
 	 */
-	onExecute : function(option) {
+	onExecute : function(options) {
 		alert("Unimplemented onExecute!");
 	}
 

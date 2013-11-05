@@ -320,15 +320,15 @@ Ext.define("dnet.core.dc.AbstractDc", {
 	/**
 	 * Execute query to fetch data.
 	 */
-	doQuery : function() {
-		this.commands.doQuery.execute();
+	doQuery : function(options) {
+		this.commands.doQuery.execute(options);
 	},
 
 	/**
 	 * Clear query criteria -> reset filter to its initial state
 	 */
-	doClearQuery : function() {
-		this.commands.doClearQuery.execute();
+	doClearQuery : function(options) {
+		this.commands.doClearQuery.execute(options);
 	},
 
 	/**
@@ -336,51 +336,51 @@ Ext.define("dnet.core.dc.AbstractDc", {
 	 * filter forms to acquire focus.
 	 * 
 	 */
-	doEnterQuery : function() {
-		this.fireEvent("onEnterQuery", this);
+	doEnterQuery : function(options) {
+		this.fireEvent("onEnterQuery", this, options);
 	},
 
 	/**
 	 * Create a new record.
 	 */
-	doNew : function() {
-		this.commands.doNew.execute();
+	doNew : function(options) {
+		this.commands.doNew.execute(options);
 	},
 
 	/**
 	 * Copy the current record reset its ID and make it current record ready to
 	 * be edited.
 	 */
-	doCopy : function() {
-		this.commands.doCopy.execute();
+	doCopy : function(options) {
+		this.commands.doCopy.execute(options);
 	},
 
 	/**
 	 * Save changes.
 	 */
-	doSave : function() {
-		this.commands.doSave.execute();
+	doSave : function(options) {
+		this.commands.doSave.execute(options);
 	},
 
 	/**
 	 * Discard changes to the last clean state.
 	 */
-	doCancel : function() {
-		this.commands.doCancel.execute();
+	doCancel : function(options) {
+		this.commands.doCancel.execute(options);
 	},
 
 	/**
 	 * Delete current record.
 	 */
-	doDelete : function() {
-		this.commands.doDelete.execute();
+	doDelete : function(options) {
+		this.commands.doDelete.execute(options);
 	},
 
 	/**
 	 * Delete selected records.
 	 */
-	doDeleteSelection : function() {
-		this.commands.doDelete.execute();
+	doDeleteSelection : function(options) {
+		this.commands.doDelete.execute(options);
 	},
 
 	/**
@@ -388,8 +388,8 @@ Ext.define("dnet.core.dc.AbstractDc", {
 	 * to in order to acquire focus. Used for data-controls which are not multi
 	 * edit and work with a grid/form pairs.
 	 */
-	doEditIn : function() {
-		this.commands.doEditIn.execute();
+	doEditIn : function(options) {
+		this.commands.doEditIn.execute(options);
 	},
 
 	/**
@@ -397,15 +397,15 @@ Ext.define("dnet.core.dc.AbstractDc", {
 	 * to in order to acquire focus. Used for data-controls which are not multi
 	 * edit and work with a grid/form pairs.
 	 */
-	doEditOut : function() {
-		this.commands.doEditOut.execute();
+	doEditOut : function(options) {
+		this.commands.doEditOut.execute(options);
 	},
 
 	/**
 	 * Reload the current record data from server
 	 */
-	doReloadRecord : function() {
-		this.commands.doReloadRec.execute();
+	doReloadRecord : function(options) {
+		this.commands.doReloadRec.execute(options);
 	},
 
 	/**
@@ -432,15 +432,15 @@ Ext.define("dnet.core.dc.AbstractDc", {
 	/**
 	 * Set the previous available record as current record.
 	 */
-	setPreviousAsCurrent : function() {
-		this.commands.doPrevRec.execute();
+	setPreviousAsCurrent : function(options) {
+		this.commands.doPrevRec.execute(options);
 	},
 
 	/**
 	 * Set the next available record as current record.
 	 */
-	setNextAsCurrent : function() {
-		this.commands.doNextRec.execute();
+	setNextAsCurrent : function(options) {
+		this.commands.doNextRec.execute(options);
 	},
 
 	/**
