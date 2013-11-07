@@ -23,7 +23,7 @@ Ext.define("dnet.core.dc.view.AbstractDNetDcForm", {
 	 */
 	_disableAllFields_ : function() {
 		this.getForm().getFields().each(function(item, index, length) {
-			item.disable();
+			item._disable_();
 		});
 	},
 
@@ -32,7 +32,7 @@ Ext.define("dnet.core.dc.view.AbstractDNetDcForm", {
 	 */
 	_enableAllFields_ : function() {
 		this.getForm().getFields().each(function(item, index, length) {
-			item.enable();
+			item._enable_();
 		});
 	},
 
@@ -103,7 +103,7 @@ Ext.define("dnet.core.dc.view.AbstractDNetDcForm", {
 	 */
 	_disableFields_ : function(fldNamesArray) {
 		for ( var i = 0, l = fldNamesArray.length; i < l; i++) {
-			this._get_(fldNamesArray[i]).disable();
+			this._get_(fldNamesArray[i])._disable_();
 		}
 	},
 

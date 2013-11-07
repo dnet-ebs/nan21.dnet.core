@@ -47,11 +47,7 @@ Ext.define("dnet.core.dc.view.DcvGridBuilder", {
 	},
 
 	addNumberColumn : function(config) {
-		config.xtype = "numbercolumn";
-		config.field = {
-			xtype : 'textfield',
-			readOnly : true
-		};
+		config.xtype = "numbercolumn";		
 		config.format = Dnet.getNumberFormat(config.decimals || 0);
 		Ext.applyIf(config, {
 			align : "right"

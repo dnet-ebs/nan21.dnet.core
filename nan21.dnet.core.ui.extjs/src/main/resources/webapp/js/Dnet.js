@@ -303,7 +303,7 @@ Dnet = {
 		this.numberFormats.add(0, _fmt);
 		_fmt = _fmt + ".";
 		for ( var i = 1; i < 6; i++) {
-			var fmt = _fmt + Ext.util.Format.leftPad("0", i, "0");
+			var fmt = _fmt + Ext.util.Format.leftPad("#", i, "#");
 			this.numberFormats.add(i, fmt);
 		}
 	},
