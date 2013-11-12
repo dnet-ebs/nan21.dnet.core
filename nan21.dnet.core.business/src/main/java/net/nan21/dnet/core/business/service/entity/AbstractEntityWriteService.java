@@ -272,8 +272,8 @@ public abstract class AbstractEntityWriteService<E> extends
 		if (IModelWithClientId.class.isAssignableFrom(e.getClass())) {
 			IModelWithClientId x = (IModelWithClientId) e;
 			if (x.getClientId() == null
-					|| x.getClientId() == Session.user.get().getClient()
-							.getId()) {
+					|| x.getClientId().equals(
+							Session.user.get().getClient().getId())) {
 				this.getEntityManager().remove(e);
 			} else {
 				throw new BusinessException(

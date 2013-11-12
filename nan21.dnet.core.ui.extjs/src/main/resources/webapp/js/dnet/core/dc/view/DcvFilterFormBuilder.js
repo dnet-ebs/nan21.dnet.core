@@ -325,6 +325,9 @@ Ext.define("dnet.core.dc.view.DcvFilterFormBuilder", {
 		if (config.allowBlank === false && config.noLabel !== true) {
 			config.labelSeparator = "*";
 		}
+		if (config.noEdit === true) {
+			config.readOnly = true;
+		}
 		this.dcv._elems_.add(config.name, config);
 	}
 });

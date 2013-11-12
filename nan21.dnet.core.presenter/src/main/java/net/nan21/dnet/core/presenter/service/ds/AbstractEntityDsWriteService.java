@@ -324,8 +324,8 @@ public abstract class AbstractEntityDsWriteService<M extends AbstractDsModel<E>,
 	 * @param id
 	 * @return
 	 */
-	protected E lookupEntityById(List<E> list, Object id) {
-		for (E e : list) {
+	protected <T> T lookupEntityById(List<T> list, Object id) {
+		for (T e : list) {
 			if (((IModelWithId) e).getId().equals(id)) {
 				return e;
 			}

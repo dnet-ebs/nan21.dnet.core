@@ -44,6 +44,9 @@ Dnet = {
 		sc : "net.nan21.dnet.module.sc.",
 		pj : "net.nan21.dnet.module.pj.",
 		ix : "net.nan21.dnet.module.ix.",
+		fi : "net.nan21.dnet.module.fi.",
+		iv : "net.nan21.dnet.module.iv.",
+		op : "net.nan21.dnet.module.op.",
 		hr : "net.nan21.dnet.module.hr."
 	},
 
@@ -68,7 +71,7 @@ Dnet = {
 		MENU : "MenuRtLov_Ds",
 		MENU_ITEM : "MenuItemRtLov_Ds",
 		COMPANY_LOV : "OrgLov_Ds",
-		DS_LOV: "DataSourceLov_Ds"
+		DS_LOV : "DataSourceLov_Ds"
 	},
 
 	msgType : {
@@ -590,11 +593,13 @@ Dnet = {
 	 */
 
 	translateField : function(vrb, mrb, item) {
+		
 		// check if the view has its own resource bundle
 		if (vrb != undefined && vrb[item.name]) {
 			item.fieldLabel = vrb[item.name];
 			return true;
 		}
+		
 		// try to translate it from the model"s resource bundle
 		if (item.dataIndex != undefined && mrb != null
 				&& mrb[item.dataIndex + "__lbl"]) {
@@ -606,6 +611,15 @@ Dnet = {
 			item.fieldLabel = mrb[item.paramIndex + "__lbl"];
 			return true;
 		}
+		
+		//for built-in ranged filter field. It's a composite field but no dataIndex
+		//Use the name instead
+		if (mrb != null
+				&& mrb[item.name + "__lbl"]) {
+			item.fieldLabel = mrb[item.name + "__lbl"];
+			return true;
+		}
+		
 		// try to translate from the shared resource-bundle
 		item.fieldLabel = Dnet.translate("ds", item.dataIndex
 				|| item.paramIndex);
@@ -733,12 +747,11 @@ Dnet = {
 		});
 	},
 
-	
 	working : function(msg) {
 		msg = msg || this.translate("msg", "working");
 		Ext.Msg.wait(msg);
 	},
-	
+
 	error : function(msg, params) {
 		this.alert(this.msgType.ERROR, msg, params);
 	},
@@ -746,12 +759,11 @@ Dnet = {
 	warning : function(msg, params) {
 		this.alert(this.msgType.WARNING, msg, params);
 	},
-	
+
 	info : function(msg, params) {
 		this.alert(this.msgType.INFO, msg, params);
 	},
 
-	
 	alert : function(type, msg, params) {
 		var title = "Error";
 		if (type == this.msgType.INFO) {
