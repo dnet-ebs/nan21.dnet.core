@@ -104,7 +104,8 @@ Ext.define("dnet.core.lov.AbstractCombo", {
 
 	onTrigger2Click : function() {
 		if (this._editDialog_ == null) {
-			alert("No destination frame specified in _editDialog_.");
+			alert("No destination frame specified.");
+			return;
 		} else {
 			if (this._editDialog_.custom == undefined) {
 				this._editDialog_.custom = false;

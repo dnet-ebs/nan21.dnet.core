@@ -42,7 +42,8 @@ Ext.define("dnet.core.dc.view.DcvEditFormBuilder", {
 		config.xtype = "datefield";
 		Ext.applyIf(config, {
 			_mask_ : Masks.DATE,
-			checkChangeBuffer : 600
+			checkChangeBuffer : 600,
+			altFormats: Dnet.ALT_FORMATS
 		});
 		config.format = Dnet[config._mask_];
 		this.applyModelUpdater(config);

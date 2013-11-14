@@ -37,7 +37,8 @@ Ext.define("dnet.core.dc.command.DcCopyCommand", {
 		store.insert(idx + 1, target);
 
 		dc.fireEvent("afterDoNew", {
-			dc : dc
+			dc : dc,
+			options : options
 		});
 
 	},
